@@ -1,0 +1,29 @@
+EVIDENCIA DE FUNCIONAMIENTO - NORTISHOP
+Fecha de ejecución: 05-10-2026
+
+Comando: python demo.py
+
+NortiShop - evidencia de controles
+RUT almacenado legible: False
+RUT recuperado por flujo autorizado: True
+Contraseña correcta validada: True
+Contraseña incorrecta rechazada: True
+Registro comercio contiene PAN: False
+Token generado: True
+Llaves impresas: False
+
+Comando: python -m unittest discover -s tests -v
+
+Pruebas ejecutadas: 5
+Resultado: OK
+- cifrado AES-GCM recupera el original y usa nonce aleatorio
+- el contexto impide sustituir un ciphertext entre campos
+- el índice ciego normaliza el correo
+- scrypt acepta la contraseña correcta y rechaza otra
+- el registro del comercio no contiene el PAN y la bóveda puede resolver el token
+
+Comando de revisión de secretos:
+rg -n --hidden "BEGIN (RSA|PRIVATE)|llaves Base64 asignadas" .
+
+Resultado: 0 coincidencias de llaves privadas o secretos asignados.
+La única referencia a las variables de llave está en .env.example y usa marcadores.

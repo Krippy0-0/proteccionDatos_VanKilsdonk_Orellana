@@ -1,0 +1,15 @@
+._build/
+.codex_tmp_extract.py
+
+# Material de clase usado como fuente, no forma parte de la entrega
+Casos_Proyecto_Integrador.docx
+CLASE 1 PROTECCION DATOS PERSONALES.pdf
+Seguridad y Proteccion de Datos - PR - 01.pptx
+Seguridad y Proteccion de Datos - PR - 02.pptx
+
+# Archivos temporales
+__pycache__/
+*.py[cod]
+.env
+*.key
+
