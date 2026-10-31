@@ -1,0 +1,117 @@
+{
+  "roles": {
+    "cliente": "Titular de los datos. Gestiona su cuenta, pedidos, consentimientos y solicitudes de derechos.",
+    "soporte": "Atiende tickets y consultas. Ve datos de clientes enmascarados.",
+    "logistica": "Coordina despachos activos. Ve destinatario, contacto y dirección solo durante la ventana de entrega.",
+    "marketing": "Gestiona campañas. Solo ve audiencias seudonimizadas con consentimiento vigente y métricas agregadas.",
+    "finanzas": "Concilia pagos y emite facturas. Ve pagos enmascarados y reportes anonimizados.",
+    "administrador": "Administra catálogo, estados de pedidos y cuentas del personal. No ve datos personales completos.",
+    "dpo": "Encargado de protección de datos. Procesa solicitudes de derechos y es el único que revierte seudónimos.",
+    "oficial_seguridad": "Gestiona alertas e incidentes y ejecuta acciones de contención y recuperación.",
+    "auditor": "Revisa el registro de auditoría en modo solo lectura."
+  },
+  "permisos": {
+    "cliente": [
+      "analitica:registrar_propia",
+      "consentimiento:gestionar_propio",
+      "derechos:solicitar_propio",
+      "pedidos:crear",
+      "pedidos:leer_propios",
+      "perfil:leer_propio"
+    ],
+    "soporte": [
+      "clientes:leer_enmascarado",
+      "pedidos:leer",
+      "tickets:gestionar"
+    ],
+    "logistica": [
+      "despachos:actualizar_estado",
+      "despachos:leer_activos"
+    ],
+    "marketing": [
+      "marketing:audiencia_seudonimizada",
+      "marketing:metricas_agregadas"
+    ],
+    "finanzas": [
+      "pagos:leer_enmascarado",
+      "reportes:ventas_anonimizadas"
+    ],
+    "administrador": [
+      "clientes:leer_enmascarado",
+      "pedidos:actualizar_estado",
+      "pedidos:leer",
+      "personal:gestionar_roles"
+    ],
+    "dpo": [
+      "auditoria:leer",
+      "clientes:leer_enmascarado",
+      "consentimiento:leer_cualquiera",
+      "derechos:procesar",
+      "menores:reportar",
+      "seudonimos:revertir"
+    ],
+    "oficial_seguridad": [
+      "alertas:leer",
+      "auditoria:leer",
+      "auditoria:verificar",
+      "contencion:ejecutar",
+      "incidentes:gestionar"
+    ],
+    "auditor": [
+      "auditoria:leer",
+      "auditoria:verificar"
+    ]
+  },
+  "denegaciones_explicitas": {
+    "cliente": [
+      "Datos de otros clientes",
+      "Registro de auditoría",
+      "Seudónimos",
+      "Funciones administrativas"
+    ],
+    "soporte": [
+      "RUT, dirección y teléfono completos",
+      "Tokens y códigos de pago",
+      "Exportaciones masivas",
+      "Ejecutar supresiones",
+      "Auditoría"
+    ],
+    "logistica": [
+      "Pedidos entregados o fuera de la ventana",
+      "RUT, correo, historial y pagos",
+      "Datos de clientes sin despacho"
+    ],
+    "marketing": [
+      "Identidad real (nombre, correo, RUT)",
+      "Revertir seudónimos",
+      "Clientes sin consentimiento",
+      "Historial individual de compras"
+    ],
+    "finanzas": [
+      "Token de pago y PAN",
+      "Datos de contacto",
+      "Registros individuales en reportes"
+    ],
+    "administrador": [
+      "Descifrar datos personales completos",
+      "Modificar o borrar auditoría",
+      "Llaves criptográficas",
+      "Cambiar su propio rol",
+      "Asignar roles dpo/oficial_seguridad/auditor"
+    ],
+    "dpo": [
+      "Modificar o borrar auditoría",
+      "Llaves criptográficas",
+      "Cambiar roles"
+    ],
+    "oficial_seguridad": [
+      "Datos personales de clientes",
+      "Revertir seudónimos",
+      "Modificar auditoría"
+    ],
+    "auditor": [
+      "Cualquier escritura",
+      "Datos personales de clientes"
+    ]
+  }
+}

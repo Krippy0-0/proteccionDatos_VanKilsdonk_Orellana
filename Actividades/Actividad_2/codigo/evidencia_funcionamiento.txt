@@ -1,5 +1,5 @@
 EVIDENCIA DE FUNCIONAMIENTO - NORTISHOP
-Fecha de ejecución: 05-10-2026
+Fecha de ejecución: 29-10-2026 (actualización: 10 pruebas; la versión del 05-10-2026 tenía 5)
 
 Comando: python demo.py
 
@@ -10,20 +10,31 @@ Contraseña correcta validada: True
 Contraseña incorrecta rechazada: True
 Registro comercio contiene PAN: False
 Token generado: True
+Token legible en registro comercio: False
+Consentimiento sellado verificado: True
+Alteración de consentimiento detectada: True
+Saldo NortiPuntos conciliado (500 - 200): True
 Llaves impresas: False
 
 Comando: python -m unittest discover -s tests -v
 
-Pruebas ejecutadas: 5
-Resultado: OK
-- cifrado AES-GCM recupera el original y usa nonce aleatorio
-- el contexto impide sustituir un ciphertext entre campos
-- el índice ciego normaliza el correo
-- scrypt acepta la contraseña correcta y rechaza otra
-- el registro del comercio no contiene el PAN y la bóveda puede resolver el token
+test_aes_gcm_round_trip_and_random_nonce ... ok
+test_blind_index_is_deterministic_after_normalization ... ok
+test_consent_log_hmac_detects_changes ... ok
+test_context_prevents_ciphertext_substitution ... ok
+test_loyalty_ledger_integrity_and_reconciliation ... ok
+test_password_validation ... ok
+test_payment_token_is_encrypted_at_rest ... ok
+test_phone_and_billing_address_round_trip ... ok
+test_tampered_authorization_code_fails_authentication ... ok
+test_tokenization_keeps_pan_out_of_merchant_record ... ok
 
+----------------------------------------------------------------------
+Ran 10 tests in 1.058s
+
+OK
 Comando de revisión de secretos:
-rg -n --hidden "BEGIN (RSA|PRIVATE)|llaves Base64 asignadas" .
+rg -n --hidden "BEGIN (RSA|PRIVATE)|_KEY_B64=[A-Za-z0-9+/]{40,}" .
 
-Resultado: 0 coincidencias de llaves privadas o secretos asignados.
+Resultado: 0 coincidencias.
 La única referencia a las variables de llave está en .env.example y usa marcadores.

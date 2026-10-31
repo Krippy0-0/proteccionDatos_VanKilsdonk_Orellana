@@ -1,0 +1,112 @@
+{
+  "formato": "NortiShop-portabilidad/1.0 (JSON, UTF-8)",
+  "generado_utc": "2026-10-30T01:58:59",
+  "titular": {
+    "identificador": "0a64d711-50d9-4eb1-aec9-50d4ab06045a",
+    "nombre_completo": "Valentina Fuentes Araya",
+    "email": "valentina1431@correo-sintetico.test",
+    "telefono": "+56956145971",
+    "cuenta_creada": "2026-10-30T01:58:52"
+  },
+  "direcciones": [],
+  "pedidos": [
+    {
+      "pedido": "NS-3B250341",
+      "fecha": "2026-10-30T01:58:56",
+      "estado": "pagado",
+      "documento": "factura",
+      "total_clp": 38970,
+      "destinatario": "Destinatario Sintético",
+      "direccion_despacho": "Calle Falsa 123",
+      "comuna": "Antofagasta",
+      "region": "Antofagasta",
+      "items": [
+        {
+          "sku": "MOUSE-ERGO",
+          "cantidad": 1,
+          "precio_unitario_clp": 24990
+        },
+        {
+          "sku": "CABLE-USBC",
+          "cantidad": 2,
+          "precio_unitario_clp": 6990
+        }
+      ],
+      "pago": {
+        "brand": "VISA",
+        "last4": "1111",
+        "amount_clp": 38970,
+        "status": "aprobado",
+        "created_at": "2026-10-30T01:58:56"
+      }
+    }
+  ],
+  "nortipuntos": [
+    {
+      "puntos": 38,
+      "motivo": "compra NS-3B250341",
+      "fecha": "2026-10-30T01:58:56"
+    }
+  ],
+  "resenas": [],
+  "consentimientos": {
+    "estado_actual": {
+      "marketing_email": {
+        "finalidad": "Ofertas por correo electrónico",
+        "estado": "otorgado",
+        "version_texto": "2026-10",
+        "desde": "2026-10-30T01:58:59"
+      },
+      "personalizacion": {
+        "finalidad": "Recomendaciones personalizadas",
+        "estado": "no_otorgado",
+        "version_texto": null,
+        "desde": null
+      },
+      "analitica": {
+        "finalidad": "Analítica de navegación",
+        "estado": "revocado",
+        "version_texto": "2026-10",
+        "desde": "2026-10-30T01:58:59"
+      },
+      "guardar_medio_pago": {
+        "finalidad": "Guardar medio de pago",
+        "estado": "no_otorgado",
+        "version_texto": null,
+        "desde": null
+      }
+    },
+    "historial": [
+      {
+        "finalidad": "analitica",
+        "accion": "otorgado",
+        "version_texto": "2026-10",
+        "canal": "web",
+        "fecha_hora_utc": "2026-10-30T01:58:59"
+      },
+      {
+        "finalidad": "marketing_email",
+        "accion": "otorgado",
+        "version_texto": "2026-10",
+        "canal": "web",
+        "fecha_hora_utc": "2026-10-30T01:58:59"
+      },
+      {
+        "finalidad": "analitica",
+        "accion": "revocado",
+        "version_texto": "2026-10",
+        "canal": "web",
+        "fecha_hora_utc": "2026-10-30T01:58:59"
+      }
+    ]
+  },
+  "medios_de_pago_guardados": [],
+  "excluido": [
+    "hash de contraseña",
+    "tokens de sesión y de pago",
+    "códigos de autorización",
+    "alertas y registros de seguridad",
+    "notas internas",
+    "datos de otros clientes"
+  ]
+}

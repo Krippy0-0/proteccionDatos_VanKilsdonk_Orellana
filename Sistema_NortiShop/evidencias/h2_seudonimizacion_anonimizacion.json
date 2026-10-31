@@ -1,0 +1,88 @@
+{
+  "vista_soporte_enmascarada": [
+    {
+      "cliente": "0a64d711-50d9-4eb1-aec9-50d4ab06045a",
+      "nombre": "Valentina F. A.",
+      "email": "v***@correo-sintetico.test",
+      "telefono": "+569****5971",
+      "estado": "active"
+    },
+    {
+      "cliente": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "nombre": "Josefa E. R.",
+      "email": "j***@correo-sintetico.test",
+      "telefono": "+569****7064",
+      "estado": "active"
+    },
+    {
+      "cliente": "160840d2-7b08-4d60-bc7b-4c8ecab2a977",
+      "nombre": "Tomás F. M.",
+      "email": "t***@correo-sintetico.test",
+      "telefono": "+569****4553",
+      "estado": "active"
+    }
+  ],
+  "evento_analitica_almacenado": {
+    "customer_ref": "ps_a4af2e697a68d4fab8dd",
+    "event": "vista_producto",
+    "sku": "SSD-1TB",
+    "occurred_on": "2026-10-30"
+  },
+  "audiencia_marketing": {
+    "finalidad": "marketing_email",
+    "total": 1,
+    "destinatarios": [
+      "ps_942b2d29202237b3fbef"
+    ],
+    "nota": "Seudónimos; el proveedor de mailing resuelve el correo con su propia tabla de suscripción."
+  },
+  "reversion_por_marketing": {
+    "http": 403
+  },
+  "reversion_por_dpo": {
+    "http": 200,
+    "respuesta": {
+      "dominio": "marketing",
+      "cliente": "0a64d711-50d9-4eb1-aec9-50d4ab06045a"
+    }
+  },
+  "reporte_ventas_k_anonimo": {
+    "k_anonimato": 5,
+    "celdas_publicadas": [
+      {
+        "region": "Antofagasta",
+        "mes": "2026-10",
+        "clientes_distintos": 5,
+        "pedidos": 5,
+        "venta_total_clp": 195000,
+        "distribucion_montos": {
+          "$20.000–49.999": 5
+        }
+      }
+    ],
+    "celdas_suprimidas": 1
+  },
+  "dataset_desarrollo_primeras_filas": [
+    {
+      "cliente_dev": "DEV-00001",
+      "region": "Antofagasta",
+      "mes": "2026-10",
+      "tramo_monto": "$20.000–49.999",
+      "estado": "pagado"
+    },
+    {
+      "cliente_dev": "DEV-00002",
+      "region": "Antofagasta",
+      "mes": "2026-10",
+      "tramo_monto": "$20.000–49.999",
+      "estado": "pagado"
+    },
+    {
+      "cliente_dev": "DEV-00003",
+      "region": "Antofagasta",
+      "mes": "2026-10",
+      "tramo_monto": "$20.000–49.999",
+      "estado": "pagado"
+    }
+  ]
+}

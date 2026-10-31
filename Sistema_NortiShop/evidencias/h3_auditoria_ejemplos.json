@@ -1,0 +1,799 @@
+{
+  "verificacion_cadena": {
+    "valida": true,
+    "registros_verificados": 173,
+    "cabeza": "fd3822ed102ce34cb46f95e8a203f24408f8a4e24e7670b9df1be594eea824b5"
+  },
+  "ultimos_eventos": [
+    {
+      "id": 173,
+      "event_id": "26078363-0733-4ae9-9f75-8e5d5f2eb3f0",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "staff",
+      "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+      "actor_role": "oficial_seguridad",
+      "action": "incidente.cierre",
+      "resource_type": "incidente",
+      "resource_ref": "INC-33D24654",
+      "result": "ok",
+      "request_id": "52ce3d57649e444b",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {},
+      "prev_hash": "42498e6501146c0737108f2d9083352bedef89389498ea05eb9dbb49349519aa",
+      "hash": "fd3822ed102ce34cb46f95e8a203f24408f8a4e24e7670b9df1be594eea824b5"
+    },
+    {
+      "id": 172,
+      "event_id": "9f449624-8740-484c-8aa5-43d552c65cfb",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "staff",
+      "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+      "actor_role": "oficial_seguridad",
+      "action": "incidente.recuperacion",
+      "resource_type": "incidente",
+      "resource_ref": "INC-33D24654",
+      "result": "ok",
+      "request_id": "65934293939f4c19",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "accion": "descongelar_exportaciones"
+      },
+      "prev_hash": "f8343657f9c6c873590dd4a0eaa3e8050f2d0da7534053ec72ad7bc7fb1adf90",
+      "hash": "42498e6501146c0737108f2d9083352bedef89389498ea05eb9dbb49349519aa"
+    },
+    {
+      "id": 171,
+      "event_id": "9d38fe7c-27c8-4b17-b6a3-a286ab36d857",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "staff",
+      "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+      "actor_role": "oficial_seguridad",
+      "action": "incidente.contencion",
+      "resource_type": "incidente",
+      "resource_ref": "INC-33D24654",
+      "result": "ok",
+      "request_id": "a034629919a34729",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "accion": "congelar_exportaciones",
+        "objetivo": null
+      },
+      "prev_hash": "fda57a4096fc3fe0676b74cc21bbadedf976359cb9a04cdb6dd0637f00b0e7a6",
+      "hash": "f8343657f9c6c873590dd4a0eaa3e8050f2d0da7534053ec72ad7bc7fb1adf90"
+    },
+    {
+      "id": 170,
+      "event_id": "22ae1cb7-f8ee-462c-a31b-ab37eac401f8",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "staff",
+      "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+      "actor_role": "oficial_seguridad",
+      "action": "incidente.contencion",
+      "resource_type": "incidente",
+      "resource_ref": "INC-33D24654",
+      "result": "ok",
+      "request_id": "9986c86d141a4450",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "accion": "revocar_sesiones",
+        "objetivo": "8e8419b2-db53-46fc-b6c2-040e2cb1944f"
+      },
+      "prev_hash": "2985f16f87a1988e652a5cbea8008069d07bdb3057ea04fbab6f83175d1fd097",
+      "hash": "fda57a4096fc3fe0676b74cc21bbadedf976359cb9a04cdb6dd0637f00b0e7a6"
+    },
+    {
+      "id": 169,
+      "event_id": "ca76ea84-414e-4b1e-81b4-aff8c8ab496e",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "staff",
+      "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+      "actor_role": "oficial_seguridad",
+      "action": "incidente.evidencia",
+      "resource_type": "incidente",
+      "resource_ref": "INC-33D24654",
+      "result": "ok",
+      "request_id": "9986c86d141a4450",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "sha256": "ce8c62f6f62e4497d8e020bce7b3c24acefdfff5a5af2ce9cf5152cb79c64fc6"
+      },
+      "prev_hash": "f5d53e57caab9321de92af1a88005f518ec33d6782dca7a05c27b58d87cd499c",
+      "hash": "2985f16f87a1988e652a5cbea8008069d07bdb3057ea04fbab6f83175d1fd097"
+    },
+    {
+      "id": 168,
+      "event_id": "02f76d29-b59a-49ed-8b01-3adf21e8d7c4",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "staff",
+      "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+      "actor_role": "oficial_seguridad",
+      "action": "incidente.apertura",
+      "resource_type": "incidente",
+      "resource_ref": "INC-33D24654",
+      "result": "ok",
+      "request_id": "6fa9c6e7a9f246a8",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "alertas": [
+          11
+        ],
+        "severidad": "media"
+      },
+      "prev_hash": "11a4f0ba468dd84f7e74e40e0418c71b1ba1ee982738192b897efeb1c4521446",
+      "hash": "f5d53e57caab9321de92af1a88005f518ec33d6782dca7a05c27b58d87cd499c"
+    },
+    {
+      "id": 167,
+      "event_id": "f8ebef9a-377a-4578-b9bb-e52d26bb9e52",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "staff",
+      "actor_ref": "aa22bd77-d8aa-4219-8adb-0fca86fa0a36",
+      "actor_role": "marketing",
+      "action": "acceso.denegado",
+      "resource_type": "endpoint",
+      "resource_ref": "/api/auditoria",
+      "result": "denegado",
+      "request_id": "bd075218292d4687",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "metodo": "GET",
+        "motivo": "rol_sin_permiso",
+        "permiso": "auditoria:leer"
+      },
+      "prev_hash": "c675b222a61e6dc0dbf70c7ebcd4f8958f4e29dec5792e02e64c50c7d4c4d177",
+      "hash": "11a4f0ba468dd84f7e74e40e0418c71b1ba1ee982738192b897efeb1c4521446"
+    },
+    {
+      "id": 166,
+      "event_id": "2940e489-bfff-4426-9d2c-55e28eb76fb4",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "staff",
+      "actor_ref": "aa22bd77-d8aa-4219-8adb-0fca86fa0a36",
+      "actor_role": "marketing",
+      "action": "acceso.denegado",
+      "resource_type": "endpoint",
+      "resource_ref": "/api/auditoria",
+      "result": "denegado",
+      "request_id": "ba2ae653faf44249",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "metodo": "GET",
+        "motivo": "rol_sin_permiso",
+        "permiso": "auditoria:leer"
+      },
+      "prev_hash": "67065b4ee4754af3026c72446662f1f63f143930d022f4808fbb42ddd29f25c5",
+      "hash": "c675b222a61e6dc0dbf70c7ebcd4f8958f4e29dec5792e02e64c50c7d4c4d177"
+    },
+    {
+      "id": 165,
+      "event_id": "6221e8b3-2f95-4d52-a8f7-6d093fea3391",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "staff",
+      "actor_ref": "aa22bd77-d8aa-4219-8adb-0fca86fa0a36",
+      "actor_role": "marketing",
+      "action": "acceso.denegado",
+      "resource_type": "endpoint",
+      "resource_ref": "/api/auditoria",
+      "result": "denegado",
+      "request_id": "574c49feec2748cf",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "metodo": "GET",
+        "motivo": "rol_sin_permiso",
+        "permiso": "auditoria:leer"
+      },
+      "prev_hash": "1831b7e43f0112268a7bc02de1a173e4de8caf9cb616cb02b20a2979de5c946f",
+      "hash": "67065b4ee4754af3026c72446662f1f63f143930d022f4808fbb42ddd29f25c5"
+    },
+    {
+      "id": 164,
+      "event_id": "4d277f67-6183-4bf5-9319-7375b3b419fe",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "staff",
+      "actor_ref": "aa22bd77-d8aa-4219-8adb-0fca86fa0a36",
+      "actor_role": "marketing",
+      "action": "acceso.denegado",
+      "resource_type": "endpoint",
+      "resource_ref": "/api/auditoria",
+      "result": "denegado",
+      "request_id": "ec4802773b394a02",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "metodo": "GET",
+        "motivo": "rol_sin_permiso",
+        "permiso": "auditoria:leer"
+      },
+      "prev_hash": "4fc6580bc9bfdde12a15439cfa88010a7c94559819eeed038f77608376144400",
+      "hash": "1831b7e43f0112268a7bc02de1a173e4de8caf9cb616cb02b20a2979de5c946f"
+    },
+    {
+      "id": 163,
+      "event_id": "cbc1343a-8e4f-41b4-8755-391fe22a371d",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "staff",
+      "actor_ref": "aa22bd77-d8aa-4219-8adb-0fca86fa0a36",
+      "actor_role": "marketing",
+      "action": "acceso.denegado",
+      "resource_type": "endpoint",
+      "resource_ref": "/api/auditoria",
+      "result": "denegado",
+      "request_id": "b031c35b16b14bc8",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "metodo": "GET",
+        "motivo": "rol_sin_permiso",
+        "permiso": "auditoria:leer"
+      },
+      "prev_hash": "408a83e77db88fd9d41a4c60754df04fdfeadf3fece790becfc5c4ddba6ccefc",
+      "hash": "4fc6580bc9bfdde12a15439cfa88010a7c94559819eeed038f77608376144400"
+    },
+    {
+      "id": 162,
+      "event_id": "506b6890-12e2-4386-abdc-8379f0426b0f",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "sistema",
+      "actor_ref": "detector",
+      "actor_role": "sistema",
+      "action": "seguridad.alerta",
+      "resource_type": "alerta",
+      "resource_ref": "11",
+      "result": "ok",
+      "request_id": null,
+      "ip_prefix": null,
+      "details": {
+        "nivel": "sospechoso",
+        "regla": "fuerza_bruta_login",
+        "sujeto": "8e8419b2-db53-46fc-b6c2-040e2cb1944f"
+      },
+      "prev_hash": "4ca1e9843ed6f5a61b7a0e710d293679c951a772c5bc981e069d6441d5e1cc56",
+      "hash": "408a83e77db88fd9d41a4c60754df04fdfeadf3fece790becfc5c4ddba6ccefc"
+    },
+    {
+      "id": 161,
+      "event_id": "59c949e8-8835-4f01-818e-5dac8a903c3b",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "anonimo",
+      "actor_ref": "anonimo",
+      "actor_role": "anonimo",
+      "action": "auth.login",
+      "resource_type": "customer",
+      "resource_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "result": "denegado",
+      "request_id": "2f02059c639e456c",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "bloqueada": false
+      },
+      "prev_hash": "cb861c2429ffa9713534cfcfbba0ca00dec5439121cfb479d1c45aaacbeed6a1",
+      "hash": "4ca1e9843ed6f5a61b7a0e710d293679c951a772c5bc981e069d6441d5e1cc56"
+    },
+    {
+      "id": 160,
+      "event_id": "34336725-0a92-4696-997d-eea6b6e217ae",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "anonimo",
+      "actor_ref": "anonimo",
+      "actor_role": "anonimo",
+      "action": "auth.bloqueo",
+      "resource_type": "customer",
+      "resource_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "result": "denegado",
+      "request_id": "2f02059c639e456c",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "intentos": 5,
+        "minutos": 15
+      },
+      "prev_hash": "1a23c535ba14e25eb158b0a379917445b945b9044844dd207ea0c5f4a2e418f6",
+      "hash": "cb861c2429ffa9713534cfcfbba0ca00dec5439121cfb479d1c45aaacbeed6a1"
+    },
+    {
+      "id": 159,
+      "event_id": "628f7ffc-9b64-4f1d-884a-5a448d385fd8",
+      "occurred_at": "2026-10-30T01:59:02",
+      "actor_type": "anonimo",
+      "actor_ref": "anonimo",
+      "actor_role": "anonimo",
+      "action": "auth.login",
+      "resource_type": "customer",
+      "resource_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "result": "denegado",
+      "request_id": "19b8d15b608545c1",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "bloqueada": false
+      },
+      "prev_hash": "f9b5153f3b39939a3e75b2c67d1233b9f291a73cf6144cb02ca5f411edab74a4",
+      "hash": "1a23c535ba14e25eb158b0a379917445b945b9044844dd207ea0c5f4a2e418f6"
+    },
+    {
+      "id": 158,
+      "event_id": "c4837d4e-248b-489d-bc1f-464ecc5b9d81",
+      "occurred_at": "2026-10-30T01:59:01",
+      "actor_type": "anonimo",
+      "actor_ref": "anonimo",
+      "actor_role": "anonimo",
+      "action": "auth.login",
+      "resource_type": "customer",
+      "resource_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "result": "denegado",
+      "request_id": "3205ec69a8c44d66",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "bloqueada": false
+      },
+      "prev_hash": "87ddb6ab54280949347fa9f335788b496d49f1151540553df279a1ac8b2b6fc0",
+      "hash": "f9b5153f3b39939a3e75b2c67d1233b9f291a73cf6144cb02ca5f411edab74a4"
+    },
+    {
+      "id": 157,
+      "event_id": "706b5dd1-81e1-4b2c-a52d-d681ad01f795",
+      "occurred_at": "2026-10-30T01:59:01",
+      "actor_type": "anonimo",
+      "actor_ref": "anonimo",
+      "actor_role": "anonimo",
+      "action": "auth.login",
+      "resource_type": "customer",
+      "resource_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "result": "denegado",
+      "request_id": "3befcadfa9754b60",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "bloqueada": false
+      },
+      "prev_hash": "55d52a3937844c9ab9aec82bfa0b54f6e22f9364432f6eee7848e59c1ac8f46c",
+      "hash": "87ddb6ab54280949347fa9f335788b496d49f1151540553df279a1ac8b2b6fc0"
+    },
+    {
+      "id": 156,
+      "event_id": "f3e58d05-b188-4976-9c2a-179966fc9dd2",
+      "occurred_at": "2026-10-30T01:59:01",
+      "actor_type": "anonimo",
+      "actor_ref": "anonimo",
+      "actor_role": "anonimo",
+      "action": "auth.login",
+      "resource_type": "customer",
+      "resource_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "result": "denegado",
+      "request_id": "de76562ff1ce480d",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "bloqueada": false
+      },
+      "prev_hash": "560e8e467903c5ce6e3602370ca3314221f60241dba6f8d28984eb4f9f278e57",
+      "hash": "55d52a3937844c9ab9aec82bfa0b54f6e22f9364432f6eee7848e59c1ac8f46c"
+    },
+    {
+      "id": 155,
+      "event_id": "d53a5777-4082-4ab1-bb0c-d7f06f3ccb3a",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "160840d2-7b08-4d60-bc7b-4c8ecab2a977",
+      "actor_role": "cliente",
+      "action": "derechos.cierre",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-716961230D",
+      "result": "ok",
+      "request_id": "9bb8002ed84b4d43",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {},
+      "prev_hash": "c1f0d805941ecdb25a741112e184a2c96508854b050c300b1932d3c6790916b7",
+      "hash": "560e8e467903c5ce6e3602370ca3314221f60241dba6f8d28984eb4f9f278e57"
+    },
+    {
+      "id": 154,
+      "event_id": "39a28ff3-209e-4887-b15d-1594726a6435",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "160840d2-7b08-4d60-bc7b-4c8ecab2a977",
+      "actor_role": "cliente",
+      "action": "derechos.ejecucion",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-716961230D",
+      "result": "ok",
+      "request_id": "9bb8002ed84b4d43",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "tipo": "supresion"
+      },
+      "prev_hash": "b62c35d82783f65ebe1750f5070ffbe051492c07a2bab267f6af01387840c7a7",
+      "hash": "c1f0d805941ecdb25a741112e184a2c96508854b050c300b1932d3c6790916b7"
+    },
+    {
+      "id": 153,
+      "event_id": "30f135c8-16a6-40a8-a952-ecd8cc6f2a36",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "160840d2-7b08-4d60-bc7b-4c8ecab2a977",
+      "actor_role": "cliente",
+      "action": "datos.supresion",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "160840d2-7b08-4d60-bc7b-4c8ecab2a977",
+      "result": "ok",
+      "request_id": "9bb8002ed84b4d43",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "consentimientos_revocados": 0,
+        "direcciones": 0,
+        "eventos_analitica": 0,
+        "medios_pago_guardados": 0,
+        "nortipuntos": 1,
+        "pedidos_minimizados": 1,
+        "perfiles_factura_bloqueados": 0,
+        "resenas_anonimizadas": 0,
+        "sesiones": 1,
+        "seudonimos_destruidos": 1,
+        "tickets_vaciados": 0
+      },
+      "prev_hash": "ea8f3dbffc85a418438752f03c038a93252482730fe013fbbee576b9da1d4194",
+      "hash": "b62c35d82783f65ebe1750f5070ffbe051492c07a2bab267f6af01387840c7a7"
+    },
+    {
+      "id": 152,
+      "event_id": "818cb135-628a-4d0e-abba-2168ef492133",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "160840d2-7b08-4d60-bc7b-4c8ecab2a977",
+      "actor_role": "cliente",
+      "action": "derechos.verificacion",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-716961230D",
+      "result": "ok",
+      "request_id": "9bb8002ed84b4d43",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {},
+      "prev_hash": "38ad1b1b7567c754468d8b1f60058817faa9cb6e5da15752b61af4fc913e8433",
+      "hash": "ea8f3dbffc85a418438752f03c038a93252482730fe013fbbee576b9da1d4194"
+    },
+    {
+      "id": 151,
+      "event_id": "3611b8ce-add9-401a-a4e0-64f3cce9b20d",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "160840d2-7b08-4d60-bc7b-4c8ecab2a977",
+      "actor_role": "cliente",
+      "action": "derechos.solicitud",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-716961230D",
+      "result": "ok",
+      "request_id": "729ef10c70f84dea",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "tipo": "supresion"
+      },
+      "prev_hash": "c551ca622f638ad1d0c3a5425c20f4d8d7f94ad6f25caa1bb4d2a04687f64c03",
+      "hash": "38ad1b1b7567c754468d8b1f60058817faa9cb6e5da15752b61af4fc913e8433"
+    },
+    {
+      "id": 150,
+      "event_id": "612f9238-1099-4506-bdbf-0f15c86818a7",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "staff",
+      "actor_ref": "fd41a4ef-4823-4bb6-8ce5-fbbff1f5ce5d",
+      "actor_role": "logistica",
+      "action": "despacho.estado",
+      "resource_type": "despacho",
+      "resource_ref": "NS-4783BED6",
+      "result": "ok",
+      "request_id": "136fa42108a14d99",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "estado": "entregado"
+      },
+      "prev_hash": "d600f09bc2c09a8f456af5204964bbffdf9147b49571a8b230b3238382e790eb",
+      "hash": "c551ca622f638ad1d0c3a5425c20f4d8d7f94ad6f25caa1bb4d2a04687f64c03"
+    },
+    {
+      "id": 149,
+      "event_id": "0e33908f-f908-4b4e-894e-e085ef2b2876",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "staff",
+      "actor_ref": "fd41a4ef-4823-4bb6-8ce5-fbbff1f5ce5d",
+      "actor_role": "logistica",
+      "action": "despacho.estado",
+      "resource_type": "despacho",
+      "resource_ref": "NS-707A9977",
+      "result": "ok",
+      "request_id": "e0060d05df2b44fa",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "estado": "entregado"
+      },
+      "prev_hash": "ae63a743e5cbd1d9c84e5a2b21542ea164ed5ba41e8f03c23366a505dac6a5ec",
+      "hash": "d600f09bc2c09a8f456af5204964bbffdf9147b49571a8b230b3238382e790eb"
+    },
+    {
+      "id": 148,
+      "event_id": "457139c6-5f1e-4341-8bde-c34d589806e7",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "staff",
+      "actor_ref": "fd41a4ef-4823-4bb6-8ce5-fbbff1f5ce5d",
+      "actor_role": "logistica",
+      "action": "despacho.estado",
+      "resource_type": "despacho",
+      "resource_ref": "NS-0AF2E598",
+      "result": "ok",
+      "request_id": "5f80c3f16477436e",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "estado": "entregado"
+      },
+      "prev_hash": "08ac78a4960823db90710cdd4cf8b4dade849aa34c70fc445e0fa893b5eb60fd",
+      "hash": "ae63a743e5cbd1d9c84e5a2b21542ea164ed5ba41e8f03c23366a505dac6a5ec"
+    },
+    {
+      "id": 147,
+      "event_id": "452c61fd-2785-48df-b357-985226641a04",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "staff",
+      "actor_ref": "fd41a4ef-4823-4bb6-8ce5-fbbff1f5ce5d",
+      "actor_role": "logistica",
+      "action": "despacho.estado",
+      "resource_type": "despacho",
+      "resource_ref": "NS-265A8A4C",
+      "result": "ok",
+      "request_id": "32b5a6c887fa4635",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "estado": "entregado"
+      },
+      "prev_hash": "eb408d00d286a06228c7ea5ba089c36fb60f4d2403d2b5955f447cb0e6db656b",
+      "hash": "08ac78a4960823db90710cdd4cf8b4dade849aa34c70fc445e0fa893b5eb60fd"
+    },
+    {
+      "id": 146,
+      "event_id": "02c257f2-5559-41a7-bdd4-c1bb7017f496",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "staff",
+      "actor_ref": "fd41a4ef-4823-4bb6-8ce5-fbbff1f5ce5d",
+      "actor_role": "logistica",
+      "action": "despacho.estado",
+      "resource_type": "despacho",
+      "resource_ref": "NS-511E690E",
+      "result": "ok",
+      "request_id": "7617b65ff8fc45e2",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "estado": "entregado"
+      },
+      "prev_hash": "17d49c4c1ba5306675aea46d821d324fd8da9334803cfd6ccbe57650486f5a1e",
+      "hash": "eb408d00d286a06228c7ea5ba089c36fb60f4d2403d2b5955f447cb0e6db656b"
+    },
+    {
+      "id": 145,
+      "event_id": "c38b9beb-e95b-452c-8fb4-f8db48fb99b8",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "staff",
+      "actor_ref": "fd41a4ef-4823-4bb6-8ce5-fbbff1f5ce5d",
+      "actor_role": "logistica",
+      "action": "despacho.estado",
+      "resource_type": "despacho",
+      "resource_ref": "NS-3B250341",
+      "result": "ok",
+      "request_id": "3423f3e1cb464400",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "estado": "entregado"
+      },
+      "prev_hash": "e7a1085238b9271c0c2898d5b92e384387aa6c9fcaaa38995ba545865bee95c3",
+      "hash": "17d49c4c1ba5306675aea46d821d324fd8da9334803cfd6ccbe57650486f5a1e"
+    },
+    {
+      "id": 144,
+      "event_id": "c7787038-b202-44ba-96ef-b7753b751cfa",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "staff",
+      "actor_ref": "fd41a4ef-4823-4bb6-8ce5-fbbff1f5ce5d",
+      "actor_role": "logistica",
+      "action": "datos.lectura_sensible",
+      "resource_type": "despachos",
+      "resource_ref": null,
+      "result": "ok",
+      "request_id": "a6cda8aa22744756",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "registros": 6
+      },
+      "prev_hash": "23c40e25e079bc20583906381745cf9a0137ac8db2efa9ab8a32b11e1f39ba27",
+      "hash": "e7a1085238b9271c0c2898d5b92e384387aa6c9fcaaa38995ba545865bee95c3"
+    },
+    {
+      "id": 143,
+      "event_id": "b99299c0-88f5-4c36-9a2a-ce95720f3ad4",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "160840d2-7b08-4d60-bc7b-4c8ecab2a977",
+      "actor_role": "cliente",
+      "action": "derechos.cierre",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-E5ED4A2F5C",
+      "result": "ok",
+      "request_id": "8cde6042093544f4",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {},
+      "prev_hash": "7a14e09db8aa00b8edc74dafc1acca3a5ae3fc4a35feb213756fb924ad86a8a4",
+      "hash": "23c40e25e079bc20583906381745cf9a0137ac8db2efa9ab8a32b11e1f39ba27"
+    },
+    {
+      "id": 142,
+      "event_id": "360fdb5e-56bd-43d8-a028-347016e0ad61",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "160840d2-7b08-4d60-bc7b-4c8ecab2a977",
+      "actor_role": "cliente",
+      "action": "derechos.rechazo",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-E5ED4A2F5C",
+      "result": "rechazado",
+      "request_id": "8cde6042093544f4",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "tipo": "supresion"
+      },
+      "prev_hash": "9653905ce0560b83494139b7313276784a7884c8969512974bfa3fc8cb68601a",
+      "hash": "7a14e09db8aa00b8edc74dafc1acca3a5ae3fc4a35feb213756fb924ad86a8a4"
+    },
+    {
+      "id": 141,
+      "event_id": "95c45e0d-d58d-44f2-80dd-72f640929353",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "160840d2-7b08-4d60-bc7b-4c8ecab2a977",
+      "actor_role": "cliente",
+      "action": "derechos.verificacion",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-E5ED4A2F5C",
+      "result": "ok",
+      "request_id": "8cde6042093544f4",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {},
+      "prev_hash": "7157c507857ceb86cb0eeb94d178638c1644a353f914b65246de89533279201b",
+      "hash": "9653905ce0560b83494139b7313276784a7884c8969512974bfa3fc8cb68601a"
+    },
+    {
+      "id": 140,
+      "event_id": "bb4ef960-c2be-4a4e-9e33-e62205c1bf6c",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "160840d2-7b08-4d60-bc7b-4c8ecab2a977",
+      "actor_role": "cliente",
+      "action": "derechos.solicitud",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-E5ED4A2F5C",
+      "result": "ok",
+      "request_id": "4d3bb72527194a78",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "tipo": "supresion"
+      },
+      "prev_hash": "0bdd4698ffcbf5f54febdedcd0d75cb874a3009eec19641a43fe100fd3bea6dc",
+      "hash": "7157c507857ceb86cb0eeb94d178638c1644a353f914b65246de89533279201b"
+    },
+    {
+      "id": 139,
+      "event_id": "bc8a19ce-8872-4152-9e6f-daa732855d28",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "actor_role": "cliente",
+      "action": "derechos.cierre",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-B10E32CE30",
+      "result": "ok",
+      "request_id": "36e16a86698f410b",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {},
+      "prev_hash": "d3f9b18742da0e03d70bdfe42d3b6bbbd2d13965bde2674cc60a7ac7a75ff485",
+      "hash": "0bdd4698ffcbf5f54febdedcd0d75cb874a3009eec19641a43fe100fd3bea6dc"
+    },
+    {
+      "id": 138,
+      "event_id": "72ad891a-7c16-413f-a365-6882d5b73a86",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "actor_role": "cliente",
+      "action": "derechos.ejecucion",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-B10E32CE30",
+      "result": "ok",
+      "request_id": "36e16a86698f410b",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "tipo": "rectificacion"
+      },
+      "prev_hash": "6e05f014bd1eee8f1bd742eda4c9f907a12b87bc53461b6a744a4a5bf4e9f665",
+      "hash": "d3f9b18742da0e03d70bdfe42d3b6bbbd2d13965bde2674cc60a7ac7a75ff485"
+    },
+    {
+      "id": 137,
+      "event_id": "00c322a4-d99b-4ed7-bf69-b65f9c68a94c",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "actor_role": "cliente",
+      "action": "datos.modificacion",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "result": "ok",
+      "request_id": "36e16a86698f410b",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "campos": [
+          "telefono"
+        ],
+        "pedidos_actualizados": 1,
+        "solicitud": "SOL-B10E32CE30"
+      },
+      "prev_hash": "44fc7d7cc859047ca574ab9d7f02b7d4d046f6a768e03c8f5f41c8176676eb80",
+      "hash": "6e05f014bd1eee8f1bd742eda4c9f907a12b87bc53461b6a744a4a5bf4e9f665"
+    },
+    {
+      "id": 136,
+      "event_id": "33b0337f-5483-4508-83e9-80d6acf38055",
+      "occurred_at": "2026-10-30T01:59:00",
+      "actor_type": "customer",
+      "actor_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "actor_role": "cliente",
+      "action": "derechos.verificacion",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-B10E32CE30",
+      "result": "ok",
+      "request_id": "36e16a86698f410b",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {},
+      "prev_hash": "c75cee9107f1c6782cc944ed1e32aecc8e3f472e597db05da39c03416b605da8",
+      "hash": "44fc7d7cc859047ca574ab9d7f02b7d4d046f6a768e03c8f5f41c8176676eb80"
+    },
+    {
+      "id": 135,
+      "event_id": "dc46f473-e069-467e-a5f5-47cb939f6797",
+      "occurred_at": "2026-10-30T01:58:59",
+      "actor_type": "customer",
+      "actor_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "actor_role": "cliente",
+      "action": "derechos.solicitud",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-B10E32CE30",
+      "result": "ok",
+      "request_id": "37fbbfb49b0541af",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "tipo": "rectificacion"
+      },
+      "prev_hash": "d68993cc7f6ff93a524a20649766bbfb0e8bd881dc178cc3724db7f4e59fa53d",
+      "hash": "c75cee9107f1c6782cc944ed1e32aecc8e3f472e597db05da39c03416b605da8"
+    },
+    {
+      "id": 134,
+      "event_id": "298d0b25-4782-4d9c-8992-beefaa71bb17",
+      "occurred_at": "2026-10-30T01:58:59",
+      "actor_type": "customer",
+      "actor_ref": "0a64d711-50d9-4eb1-aec9-50d4ab06045a",
+      "actor_role": "cliente",
+      "action": "datos.exportacion",
+      "resource_type": "solicitud_derechos",
+      "resource_ref": "SOL-2CAE823C70",
+      "result": "ok",
+      "request_id": "7d2da5d9270a412d",
+      "ip_prefix": "127.0.0.0/24",
+      "details": {
+        "secciones": [
+          "consentimientos",
+          "direcciones",
+          "excluido",
+          "formato",
+          "generado_utc",
+          "medios_de_pago_guardados",
+          "nortipuntos",
+          "pedidos",
+          "resenas",
+          "titular"
+        ],
+        "tipo": "portabilidad"
+      },
+      "prev_hash": "49cb499fcaa96e44e620185a6aa7624c0299107ab56b1715372e1ea837fe7603",
+      "hash": "d68993cc7f6ff93a524a20649766bbfb0e8bd881dc178cc3724db7f4e59fa53d"
+    }
+  ]
+}

@@ -1,7 +1,8 @@
 """Controles de protección para el caso académico NortiShop.
 
 El módulo demuestra cifrado autenticado, índices ciegos, hashing de
-contraseñas y tokenización. No registra secretos ni datos en texto claro.
+contraseñas, tokenización y sellos de integridad HMAC. No registra secretos
+ni datos en texto claro.
 """
 
 from __future__ import annotations
@@ -10,6 +11,7 @@ import base64
 import hashlib
 import hmac
 import os
+import json
 import secrets
 from dataclasses import dataclass
 
@@ -84,12 +86,17 @@ class FieldProtector:
 
 
 class PasswordProtector:
-    """Deriva hashes de contraseña con scrypt y sal aleatoria."""
+    """Deriva hashes de contraseña con scrypt y sal aleatoria.
 
-    N = 2**14
+    Parámetros mínimos recomendados por OWASP para scrypt: N=2^17, r=8, p=1.
+    Con esos valores scrypt usa unos 128 MiB, por eso se amplía ``maxmem``.
+    """
+
+    N = 2**17
     R = 8
     P = 1
     DKLEN = 32
+    MAXMEM = 256 * 1024 * 1024
 
     @classmethod
     def hash_password(cls, password: str) -> str:
@@ -101,6 +108,7 @@ class PasswordProtector:
             r=cls.R,
             p=cls.P,
             dklen=cls.DKLEN,
+            maxmem=cls.MAXMEM,
         )
         return "$".join(
             [
@@ -128,10 +136,71 @@ class PasswordProtector:
                 r=int(r),
                 p=int(p),
                 dklen=len(expected),
+                maxmem=cls.MAXMEM,
             )
         except (ValueError, TypeError):
             return False
         return hmac.compare_digest(candidate, expected)
+
+
+class IntegrityProtector:
+    """Sella registros con HMAC-SHA-256 para detectar alteraciones.
+
+    Se usa donde predomina la integridad y no la confidencialidad: eventos de
+    consentimiento y movimientos de NortiPuntos. Cada sello incluye el sello
+    anterior, de modo que borrar, reordenar o modificar un evento rompe la
+    cadena completa.
+    """
+
+    GENESIS = "0" * 64
+
+    def __init__(self, keys: SecretKeys) -> None:
+        # Llave derivada de la llave de índice con separación de dominio.
+        self._key = hmac.new(keys.index_key, b"nortishop:integrity:v1", hashlib.sha256).digest()
+
+    def seal(self, record: dict, *, previous: str) -> str:
+        canonical = json.dumps(record, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+        return hmac.new(
+            self._key, (previous + "|" + canonical).encode("utf-8"), hashlib.sha256
+        ).hexdigest()
+
+    def append(self, chain: list[dict], record: dict) -> dict:
+        previous = chain[-1]["mac"] if chain else self.GENESIS
+        entry = {"record": dict(record), "mac": self.seal(record, previous=previous)}
+        chain.append(entry)
+        return entry
+
+    def verify_chain(self, chain: list[dict]) -> bool:
+        previous = self.GENESIS
+        for entry in chain:
+            expected = self.seal(entry["record"], previous=previous)
+            if not hmac.compare_digest(expected, entry["mac"]):
+                return False
+            previous = entry["mac"]
+        return True
+
+
+class LoyaltyLedger:
+    """Libro de NortiPuntos: el saldo se deriva de movimientos sellados."""
+
+    def __init__(self, integrity: IntegrityProtector) -> None:
+        self._integrity = integrity
+        self.entries: list[dict] = []
+
+    def add(self, customer_ref: str, points: int, reason: str) -> None:
+        if not isinstance(points, int) or points == 0:
+            raise ValueError("Movimiento inválido")
+        if self.balance(customer_ref) + points < 0:
+            raise ValueError("El saldo no puede quedar negativo")
+        self._integrity.append(
+            self.entries,
+            {"customer": customer_ref, "points": points, "reason": reason, "seq": len(self.entries)},
+        )
+
+    def balance(self, customer_ref: str) -> int:
+        if not self._integrity.verify_chain(self.entries):
+            raise ValueError("Libro de NortiPuntos alterado")
+        return sum(e["record"]["points"] for e in self.entries if e["record"]["customer"] == customer_ref)
 
 
 @dataclass(frozen=True)
@@ -139,6 +208,14 @@ class PaymentReference:
     token: str
     brand: str
     last4: str
+
+    def merchant_record(self, protector: "FieldProtector") -> dict:
+        """Registro que persiste NortiShop: el token va cifrado en reposo."""
+        return {
+            "payment_token_enc": protector.encrypt(self.token, context="payment:token"),
+            "brand": self.brand,
+            "last4": self.last4,
+        }
 
 
 class PaymentTokenizer:

@@ -8,6 +8,8 @@ import secrets
 
 from src.proteccion_datos import (
     FieldProtector,
+    IntegrityProtector,
+    LoyaltyLedger,
     PasswordProtector,
     PaymentTokenizer,
     SecretKeys,
@@ -27,7 +29,9 @@ def _configure_ephemeral_demo_keys() -> None:
 
 def main() -> None:
     _configure_ephemeral_demo_keys()
-    protector = FieldProtector(SecretKeys.from_environment())
+    keys = SecretKeys.from_environment()
+    protector = FieldProtector(keys)
+    integrity = IntegrityProtector(keys)
 
     rut = "12.345.678-5"  # dato ficticio para la demostración
     protected_rut = protector.encrypt(rut, context="customer:rut")
@@ -41,11 +45,19 @@ def main() -> None:
 
     tokenizer = PaymentTokenizer(protector)
     payment = tokenizer.tokenize("4111 1111 1111 1111", brand="VISA TEST")
-    merchant_record = {
-        "payment_token": payment.token,
-        "brand": payment.brand,
-        "last4": payment.last4,
-    }
+    merchant_record = payment.merchant_record(protector)
+
+    consent_log: list[dict] = []
+    integrity.append(consent_log, {"customer": "c-1", "purpose": "marketing_email",
+                                   "action": "grant", "text_version": "2026-10"})
+    consent_ok = integrity.verify_chain(consent_log)
+    consent_log[0]["record"]["purpose"] = "analytics"
+    consent_tamper_detected = not integrity.verify_chain(consent_log)
+
+    ledger = LoyaltyLedger(integrity)
+    ledger.add("c-1", 500, "compra")
+    ledger.add("c-1", -200, "canje")
+    balance = ledger.balance("c-1")
 
     print("NortiShop - evidencia de controles")
     print(f"RUT almacenado legible: {rut in protected_rut}")
@@ -54,6 +66,10 @@ def main() -> None:
     print(f"Contraseña incorrecta rechazada: {not invalid_password}")
     print(f"Registro comercio contiene PAN: {'4111111111111111' in str(merchant_record)}")
     print(f"Token generado: {payment.token.startswith('tok_')}")
+    print(f"Token legible en registro comercio: {payment.token in str(merchant_record)}")
+    print(f"Consentimiento sellado verificado: {consent_ok}")
+    print(f"Alteración de consentimiento detectada: {consent_tamper_detected}")
+    print(f"Saldo NortiPuntos conciliado (500 - 200): {balance == 300}")
     print("Llaves impresas: False")
 
 

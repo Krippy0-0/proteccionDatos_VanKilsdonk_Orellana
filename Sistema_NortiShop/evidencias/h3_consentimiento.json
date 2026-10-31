@@ -1,0 +1,99 @@
+{
+  "estado_actual": {
+    "consentimientos": {
+      "marketing_email": {
+        "finalidad": "Ofertas por correo electrónico",
+        "estado": "otorgado",
+        "version_texto": "2026-10",
+        "desde": "2026-10-30T01:58:59"
+      },
+      "personalizacion": {
+        "finalidad": "Recomendaciones personalizadas",
+        "estado": "no_otorgado",
+        "version_texto": null,
+        "desde": null
+      },
+      "analitica": {
+        "finalidad": "Analítica de navegación",
+        "estado": "revocado",
+        "version_texto": "2026-10",
+        "desde": "2026-10-30T01:58:59"
+      },
+      "guardar_medio_pago": {
+        "finalidad": "Guardar medio de pago",
+        "estado": "no_otorgado",
+        "version_texto": null,
+        "desde": null
+      }
+    }
+  },
+  "historial": {
+    "historial": [
+      {
+        "finalidad": "analitica",
+        "accion": "otorgado",
+        "version_texto": "2026-10",
+        "canal": "web",
+        "fecha_hora_utc": "2026-10-30T01:58:59"
+      },
+      {
+        "finalidad": "marketing_email",
+        "accion": "otorgado",
+        "version_texto": "2026-10",
+        "canal": "web",
+        "fecha_hora_utc": "2026-10-30T01:58:59"
+      },
+      {
+        "finalidad": "analitica",
+        "accion": "revocado",
+        "version_texto": "2026-10",
+        "canal": "web",
+        "fecha_hora_utc": "2026-10-30T01:58:59"
+      }
+    ]
+  },
+  "version_desactualizada": {
+    "error": "La versión del texto informado no es la vigente; vuelva a leerlo",
+    "request_id": "fe7e9561e3194250"
+  },
+  "registro_en_base": [
+    {
+      "id": 1,
+      "subject_ref": "ps_f50c1bcd02077dcdb235",
+      "purpose_code": "analitica",
+      "text_version": "2026-10",
+      "action": "otorgado",
+      "channel": "web",
+      "occurred_at": "2026-10-30T01:58:59",
+      "mac": "c1e8eb1b5cb2fb1a…"
+    },
+    {
+      "id": 2,
+      "subject_ref": "ps_f50c1bcd02077dcdb235",
+      "purpose_code": "marketing_email",
+      "text_version": "2026-10",
+      "action": "otorgado",
+      "channel": "web",
+      "occurred_at": "2026-10-30T01:58:59",
+      "mac": "fd322ba24c2c7f41…"
+    },
+    {
+      "id": 3,
+      "subject_ref": "ps_f50c1bcd02077dcdb235",
+      "purpose_code": "analitica",
+      "text_version": "2026-10",
+      "action": "revocado",
+      "channel": "web",
+      "occurred_at": "2026-10-30T01:58:59",
+      "mac": "6afaa5cf7d46f254…"
+    }
+  ],
+  "outbox_mailing": [
+    {
+      "customer_ref": "ps_942b2d29202237b3fbef",
+      "action": "subscribe",
+      "created_at": "2026-10-30T01:58:59"
+    }
+  ],
+  "cadena_hmac_valida": true
+}

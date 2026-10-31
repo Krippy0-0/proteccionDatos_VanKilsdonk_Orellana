@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centro de privacidad · NortiShop</title>
+<style>
+  :root { --ink:#1f2933; --brand:#17324d; --muted:#5b6b7a; --line:#d5dde5; --ok:#1d6b45; --warn:#9a3412; --bg:#f6f8fa; }
+  * { box-sizing: border-box; }
+  body { font-family: Calibri, Arial, sans-serif; margin: 0; color: var(--ink); background: var(--bg); }
+  header { background: var(--brand); color: #fff; padding: 18px 24px; }
+  header h1 { margin: 0; font-size: 22px; }
+  header p { margin: 4px 0 0; opacity: .85; font-size: 14px; }
+  main { max-width: 980px; margin: 0 auto; padding: 20px 16px 40px; }
+  section { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; margin-bottom: 18px; }
+  h2 { font-size: 18px; margin: 0 0 12px; color: var(--brand); }
+  label { display: block; font-size: 13px; color: var(--muted); margin: 8px 0 3px; }
+  input, select { width: 100%; padding: 8px; border: 1px solid var(--line); border-radius: 4px; font: inherit; }
+  button { background: var(--brand); color: #fff; border: 0; padding: 8px 14px; border-radius: 4px; font: inherit; cursor: pointer; }
+  button.secondary { background: #fff; color: var(--brand); border: 1px solid var(--brand); }
+  .row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end; }
+  .purpose { display: grid; grid-template-columns: 1fr auto; gap: 12px; border-top: 1px solid var(--line); padding: 12px 0; }
+  .purpose:first-of-type { border-top: 0; }
+  .purpose h3 { margin: 0 0 4px; font-size: 16px; }
+  .purpose p { margin: 2px 0; font-size: 14px; }
+  .small { font-size: 12px; color: var(--muted); }
+  .state { font-weight: bold; }
+  .state.otorgado { color: var(--ok); } .state.revocado, .state.no_otorgado { color: var(--warn); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: #eef2f6; }
+  #msg { min-height: 22px; font-size: 14px; margin-top: 8px; }
+  .hidden { display: none; }
+  @media (max-width: 640px) { .row, .purpose { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Centro de privacidad de NortiShop</h1>
+  <p>Decide por separado cada uso opcional de tus datos y ejerce tus derechos de acceso, portabilidad, rectificación y supresión.</p>
+</header>
+<main>
+  <section id="login-box">
+    <h2>Inicia sesión</h2>
+    <div class="row">
+      <div><label for="email">Correo</label><input id="email" type="email" autocomplete="username"></div>
+      <div><label for="password">Contraseña</label><input id="password" type="password" autocomplete="current-password"></div>
+      <div><button id="login-btn">Entrar</button></div>
+    </div>
+    <div id="msg"></div>
+  </section>
+
+  <section id="consents" class="hidden">
+    <h2>Consentimientos por finalidad</h2>
+    <p class="small">Ninguna finalidad viene marcada. Aceptar una no habilita las demás. Comprar, despachar y facturar no dependen de estas opciones.</p>
+    <div id="purposes"></div>
+  </section>
+
+  <section id="history" class="hidden">
+    <h2>Historial de consentimientos</h2>
+    <table><thead><tr><th>Fecha y hora (UTC)</th><th>Finalidad</th><th>Acción</th><th>Versión del texto</th><th>Canal</th></tr></thead>
+    <tbody id="history-body"></tbody></table>
+  </section>
+
+  <section id="rights" class="hidden">
+    <h2>Solicitudes de derechos</h2>
+    <div class="row">
+      <div><label for="tipo">Tipo de solicitud</label>
+        <select id="tipo">
+          <option value="acceso">Acceso (copia de mis datos)</option>
+          <option value="portabilidad">Portabilidad (JSON estructurado)</option>
+          <option value="rectificacion">Rectificación de teléfono</option>
+          <option value="supresion">Supresión de mi cuenta</option>
+        </select></div>
+      <div id="tel-box" class="hidden"><label for="nuevo-tel">Teléfono correcto</label><input id="nuevo-tel" placeholder="+56912345678"></div>
+      <div><button id="req-btn">Enviar solicitud</button></div>
+    </div>
+    <div id="verify-box" class="hidden">
+      <p class="small">Para proteger tu cuenta, confirma tu contraseña y, si se pide, el código enviado a tu correo.</p>
+      <div class="row">
+        <div><label for="v-pass">Contraseña</label><input id="v-pass" type="password"></div>
+        <div><label for="v-code">Código del correo</label><input id="v-code" inputmode="numeric"></div>
+        <div><button id="verify-btn">Verificar</button></div>
+      </div>
+    </div>
+    <h3 style="font-size:15px;margin:16px 0 6px">Mis solicitudes</h3>
+    <table><thead><tr><th>Solicitud</th><th>Tipo</th><th>Estado</th><th>Plazo</th><th>Respuesta</th></tr></thead>
+    <tbody id="req-body"></tbody></table>
+  </section>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+let token = null, pendingRequest = null;
+function msg(text, ok) { $('msg').textContent = text; $('msg').style.color = ok ? 'var(--ok)' : 'var(--warn)'; }
+async function api(path, method = 'GET', body) {
+  const res = await fetch(path, { method, headers: Object.assign({ 'Content-Type': 'application/json' },
+    token ? { Authorization: 'Bearer ' + token } : {}), body: body ? JSON.stringify(body) : undefined });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || ('Error ' + res.status));
+  return data;
+}
+async function loadAll() {
+  const [texts, state, hist, reqs] = await Promise.all([api('/api/consentimientos/textos'),
+    api('/api/me/consentimientos'), api('/api/me/consentimientos/historial'), api('/api/derechos/solicitudes')]);
+  $('purposes').innerHTML = '';
+  for (const p of texts.finalidades) {
+    const st = state.consentimientos[p.codigo];
+    const div = document.createElement('div'); div.className = 'purpose';
+    const granted = st.estado === 'otorgado';
+    div.innerHTML = `<div><h3>${p.nombre}</h3><p>${p.texto}</p>
+      <p class="small">Versión ${p.version} · Conservación: ${p.conservacion}</p>
+      <p class="small">Estado: <span class="state ${st.estado}">${st.estado.replace('_', ' ')}</span>${st.desde ? ' desde ' + st.desde : ''}</p></div>
+      <div><button class="${granted ? 'secondary' : ''}">${granted ? 'Revocar' : 'Autorizar'}</button></div>`;
+    div.querySelector('button').onclick = async () => {
+      try {
+        if (granted) await api(`/api/me/consentimientos/${p.codigo}/revocar`, 'POST', {});
+        else await api(`/api/me/consentimientos/${p.codigo}/otorgar`, 'POST', { version_texto: p.version });
+        msg(granted ? 'Consentimiento revocado.' : 'Consentimiento registrado.', true); loadAll();
+      } catch (e) { msg(e.message); }
+    };
+    $('purposes').appendChild(div);
+  }
+  $('history-body').innerHTML = hist.historial.map(h => `<tr><td>${h.fecha_hora_utc}</td><td>${h.finalidad}</td><td>${h.accion}</td><td>${h.version_texto}</td><td>${h.canal}</td></tr>`).join('') || '<tr><td colspan="5">Sin registros</td></tr>';
+  $('req-body').innerHTML = reqs.solicitudes.map(r => `<tr><td>${r.solicitud}</td><td>${r.tipo}</td><td>${r.estado}</td><td>${r.plazo.slice(0, 10)}</td><td>${r.respuesta || ''}</td></tr>`).join('') || '<tr><td colspan="5">Sin solicitudes</td></tr>';
+}
+$('login-btn').onclick = async () => {
+  try {
+    const s = await api('/api/auth/login', 'POST', { email: $('email').value, password: $('password').value });
+    token = s.token; $('password').value = '';
+    for (const id of ['consents', 'history', 'rights']) $(id).classList.remove('hidden');
+    msg('Sesión iniciada.', true); loadAll();
+  } catch (e) { msg('No fue posible iniciar sesión.'); }
+};
+$('tipo').onchange = () => $('tel-box').classList.toggle('hidden', $('tipo').value !== 'rectificacion');
+$('req-btn').onclick = async () => {
+  const body = { tipo: $('tipo').value };
+  if (body.tipo === 'rectificacion') body.cambios = { telefono: $('nuevo-tel').value };
+  try {
+    const r = await api('/api/derechos/solicitudes', 'POST', body);
+    pendingRequest = r.solicitud; $('verify-box').classList.remove('hidden');
+    $('v-code').parentElement.classList.toggle('hidden', !r.verificacion_requerida.includes('codigo_correo'));
+    msg(`Solicitud ${r.solicitud} recibida. Plazo de respuesta: ${r.plazo_respuesta}.`, true); loadAll();
+  } catch (e) { msg(e.message); }
+};
+$('verify-btn').onclick = async () => {
+  try {
+    const r = await api(`/api/derechos/solicitudes/${pendingRequest}/verificar`, 'POST', { password: $('v-pass').value, codigo: $('v-code').value });
+    $('v-pass').value = ''; $('v-code').value = ''; $('verify-box').classList.add('hidden');
+    msg(r.respuesta || ('Estado: ' + r.estado), true);
+    if (r.descarga) {
+      const data = await api(r.descarga);
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = pendingRequest + '.json'; a.click();
+    }
+    loadAll();
+  } catch (e) { msg(e.message); }
+};
+</script>
+</body>
+</html>

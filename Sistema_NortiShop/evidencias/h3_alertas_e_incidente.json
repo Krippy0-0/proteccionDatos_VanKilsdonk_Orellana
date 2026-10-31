@@ -1,0 +1,258 @@
+{
+  "alertas": [
+    {
+      "id": 11,
+      "created_at": "2026-10-30T01:59:02",
+      "rule": "fuerza_bruta_login",
+      "level": "sospechoso",
+      "subject_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+      "details": {
+        "eventos": 5,
+        "ventana_min": 10
+      },
+      "status": "abierta",
+      "incident_id": null
+    },
+    {
+      "id": 10,
+      "created_at": "2026-10-30T01:58:59",
+      "rule": "accesos_denegados_reiterados",
+      "level": "sospechoso",
+      "subject_ref": "64236473-cc76-4480-8095-b111717f35b4",
+      "details": {
+        "eventos": 5,
+        "ventana_min": 10
+      },
+      "status": "abierta",
+      "incident_id": null
+    },
+    {
+      "id": 9,
+      "created_at": "2026-10-30T01:58:59",
+      "rule": "accesos_denegados_reiterados",
+      "level": "sospechoso",
+      "subject_ref": "0a64d711-50d9-4eb1-aec9-50d4ab06045a",
+      "details": {
+        "eventos": 5,
+        "ventana_min": 10
+      },
+      "status": "abierta",
+      "incident_id": null
+    },
+    {
+      "id": 8,
+      "created_at": "2026-10-30T01:58:59",
+      "rule": "accesos_denegados_reiterados",
+      "level": "sospechoso",
+      "subject_ref": "504489c7-d9b8-4037-9d2a-0f24a2bd375b",
+      "details": {
+        "eventos": 5,
+        "ventana_min": 10
+      },
+      "status": "abierta",
+      "incident_id": null
+    },
+    {
+      "id": 7,
+      "created_at": "2026-10-30T01:58:59",
+      "rule": "accesos_denegados_reiterados",
+      "level": "sospechoso",
+      "subject_ref": "10cbc666-b736-4e51-ac8c-594acdfd9406",
+      "details": {
+        "eventos": 5,
+        "ventana_min": 10
+      },
+      "status": "abierta",
+      "incident_id": null
+    },
+    {
+      "id": 6,
+      "created_at": "2026-10-30T01:58:59",
+      "rule": "accesos_denegados_reiterados",
+      "level": "sospechoso",
+      "subject_ref": "aa22bd77-d8aa-4219-8adb-0fca86fa0a36",
+      "details": {
+        "eventos": 5,
+        "ventana_min": 10
+      },
+      "status": "abierta",
+      "incident_id": null
+    },
+    {
+      "id": 5,
+      "created_at": "2026-10-30T01:58:59",
+      "rule": "accesos_denegados_reiterados",
+      "level": "sospechoso",
+      "subject_ref": "fd41a4ef-4823-4bb6-8ce5-fbbff1f5ce5d",
+      "details": {
+        "eventos": 5,
+        "ventana_min": 10
+      },
+      "status": "abierta",
+      "incident_id": null
+    },
+    {
+      "id": 4,
+      "created_at": "2026-10-30T01:58:59",
+      "rule": "accesos_denegados_reiterados",
+      "level": "sospechoso",
+      "subject_ref": "8675f2d6-097f-4281-9872-0a3c69fd286e",
+      "details": {
+        "eventos": 5,
+        "ventana_min": 10
+      },
+      "status": "abierta",
+      "incident_id": null
+    },
+    {
+      "id": 3,
+      "created_at": "2026-10-30T01:58:59",
+      "rule": "accesos_denegados_reiterados",
+      "level": "sospechoso",
+      "subject_ref": "76ae4f6d-249c-4b6d-8e37-91d7e9985735",
+      "details": {
+        "eventos": 5,
+        "ventana_min": 10
+      },
+      "status": "abierta",
+      "incident_id": null
+    },
+    {
+      "id": 2,
+      "created_at": "2026-10-30T01:58:59",
+      "rule": "accesos_denegados_reiterados",
+      "level": "sospechoso",
+      "subject_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+      "details": {
+        "eventos": 5,
+        "ventana_min": 10
+      },
+      "status": "abierta",
+      "incident_id": null
+    },
+    {
+      "id": 1,
+      "created_at": "2026-10-30T01:58:59",
+      "rule": "accesos_denegados_reiterados",
+      "level": "sospechoso",
+      "subject_ref": "anonimo",
+      "details": {
+        "eventos": 5,
+        "ventana_min": 10
+      },
+      "status": "abierta",
+      "incident_id": null
+    }
+  ],
+  "ciclo_incidente": {
+    "apertura": "INC-33D24654",
+    "contencion_revocar": {
+      "incidente": "INC-33D24654",
+      "accion": "revocar_sesiones",
+      "resultado": "1 sesiones revocadas"
+    },
+    "contencion_congelar": {
+      "incidente": "INC-33D24654",
+      "accion": "congelar_exportaciones",
+      "resultado": "exportaciones congeladas"
+    },
+    "exportacion_durante_congelamiento": {
+      "error": "exportaciones_suspendidas_temporalmente",
+      "request_id": "02b473a70daf4939"
+    },
+    "recuperacion": {
+      "incidente": "INC-33D24654",
+      "accion": "descongelar_exportaciones",
+      "resultado": "exportaciones restablecidas",
+      "auditoria": {
+        "valida": true,
+        "registros_verificados": 171,
+        "cabeza": "f8343657f9c6c873590dd4a0eaa3e8050f2d0da7534053ec72ad7bc7fb1adf90"
+      }
+    },
+    "evaluacion_notificacion": {
+      "incidente": "INC-33D24654",
+      "reportar_agencia": false,
+      "comunicar_titulares": false,
+      "plazo": "no aplica; se documenta la evaluación",
+      "fundamento": "Ley 19.628 modificada por Ley 21.719, art. 14 sexies (vigente desde 01-12-2026)"
+    },
+    "cierre": {
+      "incidente": "INC-33D24654",
+      "fase": "cerrado"
+    },
+    "detalle": {
+      "incidente": {
+        "id": 1,
+        "public_id": "INC-33D24654",
+        "opened_at": "2026-10-30T01:59:02",
+        "severity": "media",
+        "phase": "cerrado",
+        "summary": "Fuerza bruta contra una cuenta de cliente",
+        "data_categories": [],
+        "affected_estimate": 1,
+        "requires_agency_report": 0,
+        "requires_subject_notice": 0,
+        "closed_at": "2026-10-30T01:59:02"
+      },
+      "acciones": [
+        {
+          "at": "2026-10-30T01:59:02",
+          "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+          "action": "preservar_evidencia",
+          "target_ref": null,
+          "result": "ok",
+          "evidence_sha256": "ce8c62f6f62e4497d8e020bce7b3c24acefdfff5a5af2ce9cf5152cb79c64fc6"
+        },
+        {
+          "at": "2026-10-30T01:59:02",
+          "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+          "action": "revocar_sesiones",
+          "target_ref": "8e8419b2-db53-46fc-b6c2-040e2cb1944f",
+          "result": "1 sesiones revocadas",
+          "evidence_sha256": null
+        },
+        {
+          "at": "2026-10-30T01:59:02",
+          "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+          "action": "congelar_exportaciones",
+          "target_ref": null,
+          "result": "exportaciones congeladas",
+          "evidence_sha256": null
+        },
+        {
+          "at": "2026-10-30T01:59:02",
+          "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+          "action": "erradicacion",
+          "target_ref": null,
+          "result": "Bloqueo de cuenta y cambio de contraseña forzado",
+          "evidence_sha256": null
+        },
+        {
+          "at": "2026-10-30T01:59:02",
+          "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+          "action": "descongelar_exportaciones",
+          "target_ref": null,
+          "result": "exportaciones restablecidas",
+          "evidence_sha256": null
+        },
+        {
+          "at": "2026-10-30T01:59:02",
+          "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+          "action": "evaluacion_notificacion",
+          "target_ref": null,
+          "result": "{\"reportar_agencia\": false, \"comunicar_titulares\": false, \"plazo\": \"no aplica; se documenta la evaluación\", \"fundamento\": \"Ley 19.628 modificada por Ley 21.719, art. 14 sexies (vigente desde 01-12-202",
+          "evidence_sha256": null
+        },
+        {
+          "at": "2026-10-30T01:59:02",
+          "actor_ref": "1f371c46-48c1-4135-b2af-00dda69596bf",
+          "action": "lecciones_aprendidas",
+          "target_ref": null,
+          "result": "{\"causas\": \"Contraseña del titular reutilizada en un sitio filtrado\", \"medidas_correctivas\": \"Bloqueo temporal, revocación de sesiones y aviso al titular\", \"mejoras\": \"Ofrecer segundo factor y detectar contraseñas filtradas al registrarse\"}",
+          "evidence_sha256": null
+        }
+      ]
+    }
+  }
+}

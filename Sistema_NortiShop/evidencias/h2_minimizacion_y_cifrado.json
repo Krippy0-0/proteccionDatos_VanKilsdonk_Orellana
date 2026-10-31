@@ -1,0 +1,40 @@
+{
+  "registro_con_campos_eliminados": {
+    "http": 400,
+    "respuesta": {
+      "error": "validacion",
+      "campos": {
+        "fecha_nacimiento": "campo no permitido por minimización: NortiShop no necesita la fecha de nacimiento: basta la declaración de mayoría de edad.",
+        "genero": "campo no permitido por minimización: El género no es necesario para vender ni despachar."
+      },
+      "request_id": "d8d56f0c6d984070"
+    }
+  },
+  "checkout_con_cvv": {
+    "http": 400,
+    "respuesta": {
+      "error": "validacion",
+      "campos": {
+        "cvv": "campo no permitido por minimización: El código de seguridad nunca se almacena."
+      },
+      "request_id": "90e6bd75413943d5"
+    }
+  },
+  "fila_customers_tal_como_queda_en_la_base": {
+    "public_id": "0a64d711-50d9-4eb1-aec9-50d4ab06045a",
+    "full_name_enc": "v1:4TUvliiR_WfBejF3KaeioVYqYEoHtzRNh8OWegHKoJuxX…",
+    "email_enc": "v1:NjDsUJJnPc_ejvbcSlq89WvS5Bj9TYhGO5xFySKvdVteD…",
+    "email_idx": "uKGRKbbvSkHlGog1hSwN0607inJ22RobHEkbzrzz8Gk",
+    "phone_enc": "v1:s0jCut9ioyWMmPlx6-IU5oLDEK0CJ9Iyu5MVsDX2STifT…",
+    "adult_declared": 1,
+    "status": "active"
+  },
+  "formato_hash_contrasena": [
+    "scrypt",
+    "131072",
+    "8",
+    "1",
+    "<sal>",
+    "<hash>"
+  ]
+}

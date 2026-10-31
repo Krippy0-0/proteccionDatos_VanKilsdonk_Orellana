@@ -1,0 +1,8 @@
+{
+  "escenario": "Copia de la base: se elimina el trigger y se cambia un 'denegado' por 'ok'",
+  "resultado_verificacion": {
+    "valida": false,
+    "registros_verificados": 26,
+    "falla_en_id": 27
+  }
+}

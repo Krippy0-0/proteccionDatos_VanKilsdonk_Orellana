@@ -1,0 +1,146 @@
+{
+  "1_recepcion": {
+    "solicitud": "SOL-2CAE823C70",
+    "tipo": "portabilidad",
+    "estado": "verificacion",
+    "plazo_respuesta": "2026-11-29",
+    "verificacion_requerida": [
+      "password",
+      "codigo_correo"
+    ]
+  },
+  "2_verificacion_fallida": {
+    "error": "Verificación fallida",
+    "request_id": "c46edf13e756403d"
+  },
+  "3_verificacion_exitosa": {
+    "solicitud": "SOL-2CAE823C70",
+    "estado": "ejecutada",
+    "respuesta": "Copia disponible para descarga durante 24 horas en formato JSON estructurado (Ley 21.719, arts. 5 y 9).",
+    "descarga": "/api/derechos/solicitudes/SOL-2CAE823C70/exportacion"
+  },
+  "rectificacion_invalida": {
+    "error": "validacion",
+    "campos": {
+      "telefono": "largo permitido 8-20"
+    },
+    "request_id": "a781dc3dc50d4db0"
+  },
+  "rectificacion": {
+    "solicitud": "SOL-B10E32CE30",
+    "estado": "cerrada",
+    "respuesta": "Datos corregidos: telefono. Pedidos en curso actualizados: 1. Las facturas ya emitidas no se modifican (documento tributario)."
+  },
+  "supresion_con_pedido_en_curso": {
+    "solicitud": "SOL-E5ED4A2F5C",
+    "estado": "cerrada",
+    "resultado": "rechazada",
+    "respuesta": "Hay 1 pedido(s) en curso. La supresión no procede mientras el tratamiento sea necesario para ejecutar el contrato (Ley 21.719, art. 7). Podrá solicitarla cuando se entreguen o anulen. Puede reclamar ante la Agencia de Protección de Datos Personales dentro de 30 días hábiles (Ley 21.719, art. 11)."
+  },
+  "supresion_ejecutada": {
+    "solicitud": "SOL-716961230D",
+    "estado": "cerrada",
+    "respuesta": "Datos suprimidos. Se conservan bloqueados solo los registros de pedidos y facturas exigidos por la normativa tributaria hasta su plazo, y la prueba seudonimizada de sus decisiones de consentimiento.",
+    "detalle": {
+      "consentimientos_revocados": 0,
+      "direcciones": 0,
+      "medios_pago_guardados": 0,
+      "sesiones": 1,
+      "nortipuntos": 1,
+      "eventos_analitica": 0,
+      "resenas_anonimizadas": 0,
+      "tickets_vaciados": 0,
+      "pedidos_minimizados": 1,
+      "perfiles_factura_bloqueados": 0,
+      "seudonimos_destruidos": 1
+    }
+  },
+  "cliente_suprimido_en_base": {
+    "public_id": "160840d2-7b08-4d60-bc7b-4c8ecab2a977",
+    "full_name_enc": null,
+    "email_enc": null,
+    "phone_enc": null,
+    "email_idx": "suprimido:9c9e1c7c90e84a2da5b373e53128c651",
+    "status": "erased",
+    "erased_at": "2026-10-30T01:59:00"
+  },
+  "panel_dpo": {
+    "solicitudes": [
+      {
+        "public_id": "SOL-716961230D",
+        "type": "supresion",
+        "status": "cerrada",
+        "received_at": "2026-10-30T01:59:00",
+        "due_at": "2026-11-29T01:59:00",
+        "extended": 0,
+        "closed_at": "2026-10-30T01:59:00",
+        "vencida": false
+      },
+      {
+        "public_id": "SOL-E5ED4A2F5C",
+        "type": "supresion",
+        "status": "cerrada",
+        "received_at": "2026-10-30T01:59:00",
+        "due_at": "2026-11-29T01:59:00",
+        "extended": 0,
+        "closed_at": "2026-10-30T01:59:00",
+        "vencida": false
+      },
+      {
+        "public_id": "SOL-B10E32CE30",
+        "type": "rectificacion",
+        "status": "cerrada",
+        "received_at": "2026-10-30T01:58:59",
+        "due_at": "2026-11-29T01:58:59",
+        "extended": 0,
+        "closed_at": "2026-10-30T01:59:00",
+        "vencida": false
+      },
+      {
+        "public_id": "SOL-2CAE823C70",
+        "type": "portabilidad",
+        "status": "ejecutada",
+        "received_at": "2026-10-30T01:58:59",
+        "due_at": "2026-11-29T01:58:59",
+        "extended": 0,
+        "closed_at": null,
+        "vencida": false
+      }
+    ]
+  },
+  "historial_titular_A": {
+    "solicitudes": [
+      {
+        "solicitud": "SOL-2CAE823C70",
+        "tipo": "portabilidad",
+        "estado": "ejecutada",
+        "recibida": "2026-10-30T01:58:59",
+        "plazo": "2026-11-29T01:58:59",
+        "prorrogada": false,
+        "respuesta": "Copia disponible para descarga durante 24 horas en formato JSON estructurado (Ley 21.719, arts. 5 y 9).",
+        "historial": [
+          {
+            "status": "recibida",
+            "at": "2026-10-30T01:58:59",
+            "note": null
+          },
+          {
+            "status": "verificacion",
+            "at": "2026-10-30T01:58:59",
+            "note": "contraseña + código por correo"
+          },
+          {
+            "status": "evaluacion",
+            "at": "2026-10-30T01:58:59",
+            "note": "identidad verificada"
+          },
+          {
+            "status": "ejecutada",
+            "at": "2026-10-30T01:58:59",
+            "note": "Copia disponible para descarga durante 24 horas en formato JSON estructurado (Ley 21.719, arts. 5 y 9)."
+          }
+        ]
+      }
+    ]
+  }
+}
