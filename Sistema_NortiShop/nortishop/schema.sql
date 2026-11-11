@@ -243,7 +243,7 @@ CREATE TABLE IF NOT EXISTS rights_requests (
     public_id                TEXT NOT NULL UNIQUE,
     customer_id              INTEGER REFERENCES customers(id) ON DELETE SET NULL,
     subject_ref              TEXT NOT NULL,
-    type                     TEXT NOT NULL CHECK (type IN ('acceso', 'portabilidad', 'rectificacion', 'supresion')),
+    type                     TEXT NOT NULL CHECK (type IN ('acceso', 'portabilidad', 'rectificacion', 'supresion', 'oposicion')),
     status                   TEXT NOT NULL CHECK (status IN ('recibida', 'verificacion', 'evaluacion', 'ejecutada',
                                                             'rechazada', 'cerrada')),
     received_at              TEXT NOT NULL,

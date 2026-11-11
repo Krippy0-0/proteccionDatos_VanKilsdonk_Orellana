@@ -96,6 +96,14 @@ def security_headers(resp):  # noqa: ANN001
     resp.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
     if request.path.startswith("/api/"):
         resp.headers["Cache-Control"] = "no-store"
+        actor = g.get("actor") or {}
+        if actor.get("type") not in (None, "anonimo") and request.path not in (
+            "/api/auth/registro", "/api/auth/login", "/api/personal/login", "/api/auth/logout"
+        ):
+            audit_current("acceso.api", "endpoint",
+                          request.url_rule.rule if request.url_rule else "ruta_no_encontrada",
+                          "ok" if resp.status_code < 400 else "denegado",
+                          {"metodo": request.method, "estado_http": resp.status_code})
     resp.headers["X-Request-ID"] = g.get("request_id", "")
     return resp
 
@@ -109,7 +117,7 @@ def audit_current(action: str, resource_type: str, resource_ref: str | None, res
 
 
 def deny(status: int, reason: str, permission: str | None = None):
-    audit_current("acceso.denegado", "endpoint", request.path, "denegado",
+    audit_current("acceso.denegado", "endpoint", request.url_rule.rule if request.url_rule else "ruta_no_encontrada", "denegado",
                   {"metodo": request.method, "motivo": reason, "permiso": permission})
     svc().detector.evaluate(action="acceso.denegado", result="denegado", subject_ref=g.actor["public_id"])
     error = "no_autenticado" if status == 401 else "acceso_denegado"
@@ -158,7 +166,7 @@ def register_handlers(app: Flask) -> None:
     def _db(exc: sqlite3.DatabaseError):
         if "not authorized" in str(exc) or "prohibited" in str(exc):
             # La capa de datos rechazó la consulta: defensa en profundidad.
-            audit_current("acceso.denegado", "base_de_datos", request.path, "denegado",
+            audit_current("acceso.denegado", "base_de_datos", request.url_rule.rule if request.url_rule else "ruta_no_encontrada", "denegado",
                           {"capa": "authorizer_sqlite", "rol": g.actor["role"]})
             return jsonify(error="acceso_denegado", request_id=g.request_id), 403
         return _internal(exc)
@@ -176,9 +184,11 @@ def register_handlers(app: Flask) -> None:
         from werkzeug.exceptions import HTTPException  # noqa: PLC0415
         if isinstance(exc, HTTPException):
             return jsonify(error=exc.name.lower().replace(" ", "_"), request_id=g.get("request_id")), exc.code
-        log.error("Error no controlado en %s (request_id=%s)", request.path, g.get("request_id"), exc_info=exc)
+        log.error("Error no controlado en %s (request_id=%s)",
+                  request.url_rule.rule if request.url_rule else "ruta_no_encontrada",
+                  g.get("request_id"), exc_info=exc)
         try:
-            audit_current("error.interno", "endpoint", request.path, "error", {"tipo": type(exc).__name__})
+            audit_current("error.interno", "endpoint", request.url_rule.rule if request.url_rule else "ruta_no_encontrada", "error", {"tipo": type(exc).__name__})
         except Exception:  # noqa: BLE001
             pass
         return jsonify(error="error_interno", request_id=g.get("request_id")), 500
@@ -737,7 +747,7 @@ def audit_query():
     events = svc().audit.query(g.db, action=request.args.get("accion"), actor_ref=request.args.get("actor"),
                                resource_ref=request.args.get("recurso"), limit=int(request.args.get("limite", 100)))
     # La propia consulta también se audita.
-    audit_current("auditoria.consulta", "auditoria", None, "ok", {"filtros": dict(request.args)})
+    audit_current("auditoria.consulta", "auditoria", None, "ok", {"filtros": sorted(request.args.keys())})
     return jsonify(eventos=events)
 
 
@@ -849,7 +859,8 @@ def contain(public_id: str):
         result = "sistema en modo solo lectura"
     g.db.execute("UPDATE incidents SET phase='contencion' WHERE id=?", (inc["id"],))
     _action(inc, action, target, result)
-    audit_current("incidente.contencion", "incidente", public_id, "ok", {"accion": action, "objetivo": target})
+    audit_current("incidente.contencion", "incidente", public_id, "ok", {"accion": action,
+                                                                          "objetivo_tipo": kind if action in ("revocar_sesiones", "deshabilitar_cuenta") else None})
     return jsonify(incidente=public_id, accion=action, resultado=result)
 
 

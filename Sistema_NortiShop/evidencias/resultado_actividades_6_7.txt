@@ -1,0 +1,11 @@
+test_acceso_portabilidad_y_aislamiento (__main__.ActividadesTests.test_acceso_portabilidad_y_aislamiento) ... ok
+test_alerta_incidente_y_reconstruccion (__main__.ActividadesTests.test_alerta_incidente_y_reconstruccion) ... ok
+test_oposicion_detiene_marketing_y_propaga (__main__.ActividadesTests.test_oposicion_detiene_marketing_y_propaga) ... ok
+test_rectificacion_registra_campo_sin_valor (__main__.ActividadesTests.test_rectificacion_registra_campo_sin_valor) ... ok
+test_solicitante_no_verificado (__main__.ActividadesTests.test_solicitante_no_verificado) ... ok
+test_supresion_bloquea_facturacion_y_propaga (__main__.ActividadesTests.test_supresion_bloquea_facturacion_y_propaga) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.232s
+
+OK

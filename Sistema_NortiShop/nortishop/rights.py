@@ -156,6 +156,8 @@ class RightsService:
             return self._execute(req, resolution, {"descarga": f"/api/derechos/solicitudes/{req['public_id']}/exportacion"})
         if kind == "rectificacion":
             return self._rectify(req, customer)
+        if kind == "oposicion":
+            return self._oppose_marketing(req, customer)
         if kind == "supresion":
             return self._erase(req, customer)
         raise RightsError("Tipo no soportado")
@@ -166,7 +168,7 @@ class RightsService:
                         (now, resolution, req["id"]))
         self._event(req["id"], "ejecutada", "sistema", resolution[:200])
         self.audit("derechos.ejecucion", req["public_id"], "ok", {"tipo": req["type"]})
-        if req["type"] in ("rectificacion", "supresion"):
+        if req["type"] in ("rectificacion", "supresion", "oposicion"):
             self._close(req["id"], req["public_id"])
         return {"solicitud": req["public_id"], "estado": "ejecutada" if req["type"] in ("acceso", "portabilidad")
                 else "cerrada", "respuesta": resolution, **(extra or {})}
@@ -209,12 +211,17 @@ class RightsService:
                      for i in db.execute("SELECT * FROM order_items WHERE order_id=?", (o["id"],))]
             pay = db.execute("SELECT brand, last4, amount_clp, status, created_at FROM payments WHERE order_id=?",
                              (o["id"],)).fetchone()
+            shipment = db.execute("SELECT carrier, tracking_code, status, delivered_at FROM shipments"
+                                  " WHERE order_id=?", (o["id"],)).fetchone()
             orders.append({
                 "pedido": o["public_id"], "fecha": o["created_at"], "estado": o["status"],
                 "documento": o["document_type"], "total_clp": o["total_clp"],
                 "destinatario": dec(o["recipient_name_enc"], f"order:{o['public_id']}:recipient"),
+                "telefono_destinatario": dec(o["recipient_phone_enc"], f"order:{o['public_id']}:phone")
+                if o["recipient_phone_enc"] else None,
                 "direccion_despacho": dec(o["shipping_street_enc"], f"order:{o['public_id']}:street"),
                 "comuna": o["shipping_comuna"], "region": o["shipping_region"], "items": items,
+                "despacho": dict(shipment) if shipment else None,
                 # Sin token ni código de autorización: son datos internos del medio de pago.
                 "pago": dict(pay) if pay else None,
             })
@@ -227,6 +234,8 @@ class RightsService:
                 "email": dec(c["email_enc"], "customer:email"),
                 "telefono": dec(c["phone_enc"], "customer:phone"),
                 "cuenta_creada": c["created_at"],
+                "mayor_de_edad_declarado": bool(c["adult_declared"]),
+                "estado_cuenta": c["status"],
             },
             "direcciones": [{"id": a["id"], "etiqueta": a["label"], "calle": dec(a["street_enc"], "customer:street"),
                              "comuna": a["comuna"], "region": a["region"]}
@@ -243,14 +252,45 @@ class RightsService:
             "medios_de_pago_guardados": [{"marca": p["brand"], "ultimos4": p["last4"]}
                                          for p in db.execute("SELECT brand, last4 FROM saved_payment_methods"
                                                              " WHERE customer_id=?", (customer_id,))],
+            "facturacion": [{"rut": dec(b["rut_enc"], "billing:rut"),
+                              "razon_social": dec(b["business_name_enc"], "billing:name"),
+                              "direccion": dec(b["billing_address_enc"], "billing:address"),
+                              "bloqueado_por_conservacion": bool(b["blocked"]), "fecha": b["created_at"]}
+                             for b in db.execute("SELECT * FROM billing_profiles WHERE customer_id=? ORDER BY id",
+                                                 (customer_id,))],
+            "soporte": [{"asunto": t["subject"],
+                         "mensaje": dec(t["body_enc"], "ticket:body") if t["body_enc"] else None,
+                         "estado": t["status"], "fecha": t["created_at"]}
+                        for t in db.execute("SELECT * FROM support_tickets WHERE customer_id=? ORDER BY id",
+                                            (customer_id,))],
+            "analitica": [{"evento": a["event"], "sku": a["sku"], "fecha": a["occurred_on"]}
+                          for a in db.execute("SELECT event, sku, occurred_on FROM analytics_events"
+                                              " WHERE customer_ref=? ORDER BY id",
+                                              (self.pseudo.pseudonym(customer_id, domain="analitica"),))],
+            "solicitudes_derechos": [{"solicitud": r["public_id"], "tipo": r["type"],
+                                      "estado": r["status"], "recibida": r["received_at"],
+                                      "respuesta": r["resolution"]}
+                                     for r in db.execute("SELECT * FROM rights_requests WHERE customer_id=? ORDER BY id",
+                                                         (customer_id,))],
+            "actividad_seguridad": [{"fecha": a["occurred_at"], "accion": a["action"],
+                                     "resultado": a["result"], "recurso": a["resource_type"]}
+                                    for a in db.execute("SELECT occurred_at, action, result, resource_type"
+                                                        " FROM audit_log WHERE actor_ref=? OR resource_ref=? ORDER BY id",
+                                                        (c["public_id"], c["public_id"]))],
             "excluido": ["hash de contraseña", "tokens de sesión y de pago", "códigos de autorización",
-                         "alertas y registros de seguridad", "notas internas", "datos de otros clientes"],
+                         "notas internas y detalles de alertas", "datos de otros clientes"],
         }
 
     # ---------- rectificación ----------
     def _rectify(self, req: sqlite3.Row, customer: sqlite3.Row) -> dict:
         changes = self._changes(req)
         f, cid, now = self.fields, customer["id"], now_iso()
+        addr = None
+        if "direccion_id" in changes:
+            addr = self.db.execute("SELECT * FROM addresses WHERE id=? AND customer_id=?",
+                                   (changes["direccion_id"], cid)).fetchone()
+            if addr is None:
+                return self._reject(req, "La dirección indicada no pertenece a la cuenta.")
         updated = []
         if "email" in changes:
             idx = f.blind_index(changes["email"], context="customer:email-index")
@@ -270,10 +310,6 @@ class RightsService:
             updated.append("telefono")
         propagated = 0
         if "direccion_id" in changes:
-            addr = self.db.execute("SELECT * FROM addresses WHERE id=? AND customer_id=?",
-                                   (changes["direccion_id"], cid)).fetchone()
-            if addr is None:
-                return self._reject(req, "La dirección indicada no pertenece a la cuenta.")
             street = changes.get("calle") or f.decrypt(addr["street_enc"], context="customer:street")
             comuna = changes.get("comuna", addr["comuna"])
             region = changes.get("region", addr["region"])
@@ -297,6 +333,21 @@ class RightsService:
                    {"campos": updated, "pedidos_actualizados": propagated, "solicitud": req["public_id"]})
         return self._execute(req, f"Datos corregidos: {', '.join(updated)}. Pedidos en curso actualizados: "
                                   f"{propagated}. Las facturas ya emitidas no se modifican (documento tributario).")
+
+    # ---------- supresión ----------
+    def _oppose_marketing(self, req: sqlite3.Row, customer: sqlite3.Row) -> dict:
+        """Detiene la audiencia y comunica la baja al proveedor de mailing."""
+        cid = customer["id"]
+        current = self.consent.state(cid)["marketing_email"]
+        if current["estado"] == "otorgado":
+            self.consent.revoke(cid, "marketing_email", channel="sistema")
+        else:
+            ref = self.pseudo.pseudonym(cid, domain="marketing")
+            self.db.execute("INSERT INTO marketing_outbox (customer_ref, action, created_at)"
+                            " VALUES (?,?,?)", (ref, "suppress", now_iso()))
+        self.audit("datos.oposicion", customer["public_id"], "ok",
+                   {"finalidad": "marketing_email", "solicitud": req["public_id"]})
+        return self._execute(req, "Se bloqueó el correo de marketing y se registró la baja para el proveedor de mailing.")
 
     # ---------- supresión ----------
     def _erase(self, req: sqlite3.Row, customer: sqlite3.Row) -> dict:

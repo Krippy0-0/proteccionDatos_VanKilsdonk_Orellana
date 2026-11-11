@@ -19,7 +19,8 @@ PAYMENT = {"token": "tok_demo_8f2a91c4", "marca": "VISA", "ultimos4": "1111", "c
 
 class AppTestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.tmp = Path(tempfile.mkdtemp(prefix="nortishop_test_"))
+        self.test_root = Path(__file__).resolve().parents[1]
+        self.tmp = Path(tempfile.mkdtemp(prefix="nortishop_test_", dir=self.test_root))
         self.keyring = Keyring.ephemeral()
         # N reducido solo en pruebas para que la suite sea rápida; producción usa 2^17.
         self.app = create_app(db_path=str(self.tmp / "test.db"), keyring=self.keyring,
@@ -31,6 +32,8 @@ class AppTestCase(unittest.TestCase):
 
     def tearDown(self) -> None:
         self.s.system.close()
+        if self.tmp.resolve().parent != self.test_root:
+            raise RuntimeError("La carpeta temporal salió del directorio de pruebas")
         shutil.rmtree(self.tmp, ignore_errors=True)
 
     # ---- helpers HTTP ----

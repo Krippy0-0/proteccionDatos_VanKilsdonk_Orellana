@@ -39,8 +39,9 @@ _MASKS = [
 
 AUDITED_ACTIONS = {
     "auth.login", "auth.logout", "auth.bloqueo", "auth.registro",
+    "acceso.api",
     "datos.lectura_sensible", "datos.lectura_enmascarada", "datos.modificacion", "datos.exportacion",
-    "datos.supresion", "consentimiento.otorgado", "consentimiento.revocado", "consentimiento.consulta",
+    "datos.supresion", "datos.oposicion", "consentimiento.otorgado", "consentimiento.revocado", "consentimiento.consulta",
     "derechos.solicitud", "derechos.verificacion", "derechos.evaluacion", "derechos.ejecucion",
     "derechos.rechazo", "derechos.cierre", "derechos.prorroga", "acceso.denegado",
     "admin.cambio_rol", "admin.estado_pedido", "seudonimo.reversion", "reporte.anonimizado",

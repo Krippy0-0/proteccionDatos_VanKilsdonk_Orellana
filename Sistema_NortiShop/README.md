@@ -11,7 +11,8 @@ Requiere Python 3.10 o superior.
 ```powershell
 cd Sistema_NortiShop
 python -m pip install -r requirements.txt
-python -m unittest discover -s tests -v          # 47 pruebas
+python -m unittest discover -s tests -v          # 51 pruebas
+python scripts/probar_actividades_6_7.py          # 6 pruebas directas de derechos y auditoría
 python scripts/generar_evidencias.py             # regenera la carpeta evidencias/
 ```
 
@@ -37,13 +38,16 @@ Si `NORTISHOP_DEMO_PASSWORD` no está definida, `seed-demo` genera contraseñas 
 | `nortishop/rbac.py`, `nortishop/db.py` | Roles, permisos, denegaciones explícitas y *authorizer* SQLite por rol | 2 |
 | `nortishop/logging_utils.py` | Registros técnicos con redacción de datos personales | 2 |
 | `nortishop/consent.py` | Consentimiento por finalidad, versión, historial sellado y efectos de la revocación | 3 |
-| `nortishop/rights.py` | Acceso, portabilidad, rectificación y supresión con verificación de identidad y flujo de estados | 3 |
+| `nortishop/marketing.py` | Entrega de altas y bajas al proveedor con confirmación en la cola | 3 |
+| `nortishop/rights.py` | Acceso, portabilidad, rectificación, supresión y oposición a marketing con verificación de identidad y flujo de estados | 3 |
 | `nortishop/audit.py` | Auditoría encadenada con HMAC, saneamiento, inmutabilidad y retención | 3 |
 | `nortishop/security.py` | Reglas de detección, incidentes, preservación de evidencia y criterio de notificación | 3 |
 | `nortishop/maintenance.py`, `nortishop/cli.py` | Rotación de llaves, purga de auditoría y reaplicación de supresiones tras restaurar | 3 |
 | `nortishop/api.py`, `nortishop/templates/` | API HTTP y centro de privacidad | 2 y 3 |
 | `tests/` | Pruebas de controles permitidos y denegados | 2 y 3 |
-| `evidencias/` | Resultados de pruebas, ejemplos de auditoría, exportación, matriz RBAC ejecutada y capturas | 2 y 3 |
+| `evidencias/` | Resultados de pruebas y ejemplos JSON de auditoría, exportación y matriz RBAC | 2 y 3 |
+| `scripts/probar_actividades_6_7.py` | Pruebas directas de solicitudes, exportación, oposición, supresión y simulación de incidente | 3 |
+| `evidencias/resultado_suite_http_actividades_6_7.txt` | Salida de las 51 pruebas HTTP ejecutadas el 11 de noviembre de 2026 | 3 |
 
 ## Endpoints principales
 
@@ -65,5 +69,6 @@ Si `NORTISHOP_DEMO_PASSWORD` no está definida, `seed-demo` genera contraseñas 
 
 - SQLite no tiene usuarios de base de datos ni seguridad por fila. Las restricciones de la capa de datos se aplican con un *authorizer* por conexión. En producción se usarían roles de PostgreSQL con `GRANT` por tabla y *Row Level Security*.
 - El correo y la pasarela de pago se simulan: el código de verificación llega a un buzón en memoria y el token de pago lo entrega la pasarela.
+- La baja del proveedor de mailing queda en `marketing_outbox` con acción `suppress`. `dispatch_pending` confirma cada orden aceptada por el adaptador; el proveedor real debe tratar los reintentos de forma idempotente.
 - Las llaves llegan por variables de entorno. En producción las entregaría un KMS o HSM con rotación automática y acceso auditado.
 - No hay segundo factor para el personal; está propuesto como mejora en el plan de incidentes.

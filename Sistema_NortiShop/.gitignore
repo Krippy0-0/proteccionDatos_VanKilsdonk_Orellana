@@ -7,3 +7,5 @@ __pycache__/
 *.db
 *.db-wal
 *.db-shm
+.deps/
+nortishop_test_*/

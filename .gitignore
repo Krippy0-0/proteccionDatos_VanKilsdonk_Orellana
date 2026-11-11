@@ -1,5 +1,6 @@
 ._build/
 .codex_tmp_extract.py
+output/
 
 # Material de clase usado como fuente, no forma parte de la entrega
 Casos_Proyecto_Integrador.docx

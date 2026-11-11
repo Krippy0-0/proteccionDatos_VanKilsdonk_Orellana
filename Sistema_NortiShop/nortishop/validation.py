@@ -258,7 +258,7 @@ RECTIFICATION = {
 }
 
 RIGHTS_REQUEST = {
-    "tipo": Field(check=one_of("acceso", "portabilidad", "rectificacion", "supresion")),
+    "tipo": Field(check=one_of("acceso", "portabilidad", "rectificacion", "supresion", "oposicion")),
     "cambios": Field(required=False),
     "motivo": Field(required=False, check=free_text(500)),
 }

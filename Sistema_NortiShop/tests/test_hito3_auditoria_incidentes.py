@@ -15,6 +15,19 @@ from nortishop.security import notification_assessment
 
 
 class AuditTests(AppTestCase):
+    def test_authenticated_api_reads_are_audited_without_content(self) -> None:
+        person, token = self.register()
+        self.assertEqual(self.client.get("/api/me", headers=self.auth(token)).status_code, 200)
+        self.assertEqual(self.client.get("/api/marketing/audiencia",
+                                         headers=self.auth(self.staff("marketing1"))).status_code, 200)
+        self.assertEqual(self.client.get("/api/finanzas/pagos",
+                                         headers=self.auth(self.staff("finanzas1"))).status_code, 200)
+        events = self.s.audit.query(action="acceso.api")
+        self.assertEqual({e["resource_ref"] for e in events},
+                         {"/api/me", "/api/marketing/audiencia", "/api/finanzas/pagos"})
+        self.assertTrue(all(e["details"] == {"estado_http": 200, "metodo": "GET"} for e in events))
+        self.assertNotIn(person["email"], json.dumps(events, ensure_ascii=False))
+
     def test_events_have_required_attributes_and_no_personal_data(self) -> None:
         person, token = self.register()
         self.order(token, factura=True)
@@ -85,6 +98,14 @@ class AuditTests(AppTestCase):
         self.assertEqual(r.status_code, 200)
         self.assertEqual(len(r.get_json()["eventos"]), 1)
         self.assertIn("auditoria.consulta", self.audit_actions())
+
+    def test_audit_query_does_not_log_filter_values(self) -> None:
+        self.register()
+        auditor = self.auth(self.staff("auditor1"))
+        self.assertEqual(self.client.get("/api/auditoria?actor=ana@example.com", headers=auditor).status_code, 200)
+        event = self.s.audit.query(action="auditoria.consulta")[0]
+        self.assertEqual(event["details"]["filtros"], ["actor"])
+        self.assertNotIn("ana@example.com", json.dumps(event))
 
 
 class DetectionAndIncidentTests(AppTestCase):

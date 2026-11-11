@@ -190,6 +190,17 @@ class RightsTests(AppTestCase):
                                         (r["solicitud"],)).fetchone()[0]
         self.assertIsNone(payload)  # el valor solicitado se borra al cerrar
 
+    def test_rectification_rejection_does_not_apply_other_changes(self) -> None:
+        original = self.client.get("/api/me", headers=self.h).get_json()["telefono"]
+        r = self.request({"tipo": "rectificacion", "cambios": {
+            "telefono": "+56955551234", "direccion_id": 999999, "calle": "Calle Nueva 123"
+        }})
+        self.assertEqual(r.status_code, 201)
+        done = self.verify(r.get_json()["solicitud"]).get_json()
+        self.assertEqual(done["resultado"], "rechazada")
+        self.assertEqual(self.client.get("/api/me", headers=self.h).get_json()["telefono"], original)
+        self.assertNotIn("datos.modificacion", self.audit_actions())
+
     def test_erasure_refused_with_active_order_then_executed(self) -> None:
         order = self.order(self.token, factura=True)
         self.client.post("/api/me/consentimientos/marketing_email/otorgar", json={"version_texto": "2026-10"}, headers=self.h)
@@ -244,6 +255,21 @@ class RightsTests(AppTestCase):
     def test_duplicate_open_requests_are_rejected(self) -> None:
         self.request({"tipo": "acceso"})
         self.assertEqual(self.request({"tipo": "acceso"}).status_code, 409)
+
+    def test_opposition_requires_verification_and_stops_marketing(self) -> None:
+        self.client.post("/api/me/consentimientos/marketing_email/otorgar",
+                         json={"version_texto": "2026-10"}, headers=self.h)
+        mk = self.auth(self.staff("marketing1"))
+        self.assertEqual(self.client.get("/api/marketing/audiencia", headers=mk).get_json()["total"], 1)
+        rid = self.request({"tipo": "oposicion"}).get_json()["solicitud"]
+        self.assertEqual(self.client.get("/api/marketing/audiencia", headers=mk).get_json()["total"], 1)
+        self.assertEqual(self.verify(rid, password="incorrecta").status_code, 403)
+        self.assertEqual(self.client.get("/api/marketing/audiencia", headers=mk).get_json()["total"], 1)
+        self.assertEqual(self.verify(rid).get_json()["estado"], "cerrada")
+        self.assertEqual(self.client.get("/api/marketing/audiencia", headers=mk).get_json()["total"], 0)
+        self.assertEqual(self.s.system.execute("SELECT action FROM marketing_outbox ORDER BY id DESC LIMIT 1")
+                         .fetchone()[0], "suppress")
+        self.assertIn("datos.oposicion", self.audit_actions())
 
 
 class MinorsTests(AppTestCase):

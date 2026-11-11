@@ -1,55 +1,107 @@
-Pruebas automatizadas NortiShop (Hitos 2 y 3)
-Ejecutadas: 47 · Fallas: 0 · Errores: 0
-
-test_checkout_rejects_card_data_and_free_text_with_pan (test_hito2_minimizacion_rbac.MinimizationTests.test_checkout_rejects_card_data_and_free_text_with_pan) ... ok
-test_key_rotation_reencrypts_without_losing_data (test_hito2_minimizacion_rbac.MinimizationTests.test_key_rotation_reencrypts_without_losing_data) ... ok
-test_personal_data_is_never_stored_in_plaintext (test_hito2_minimizacion_rbac.MinimizationTests.test_personal_data_is_never_stored_in_plaintext) ... ok
-test_phone_is_optional_and_minor_accounts_are_rejected (test_hito2_minimizacion_rbac.MinimizationTests.test_phone_is_optional_and_minor_accounts_are_rejected) ... ok
-test_registration_rejects_fields_removed_by_redesign (test_hito2_minimizacion_rbac.MinimizationTests.test_registration_rejects_fields_removed_by_redesign) ... ok
-test_rut_only_collected_for_invoices (test_hito2_minimizacion_rbac.MinimizationTests.test_rut_only_collected_for_invoices) ... ok
-test_analytics_and_marketing_use_pseudonyms (test_hito2_minimizacion_rbac.PseudonymizationTests.test_analytics_and_marketing_use_pseudonyms) ... ok
-test_dev_dataset_contains_no_identifiers (test_hito2_minimizacion_rbac.PseudonymizationTests.test_dev_dataset_contains_no_identifiers) ... ok
-test_sales_report_is_k_anonymous (test_hito2_minimizacion_rbac.PseudonymizationTests.test_sales_report_is_k_anonymous) ... ok
-test_admin_cannot_escalate_privileges (test_hito2_minimizacion_rbac.RBACTests.test_admin_cannot_escalate_privileges) ... ok
-test_audit_table_is_immutable_even_for_system_connection (test_hito2_minimizacion_rbac.RBACTests.test_audit_table_is_immutable_even_for_system_connection) ... ok
-test_database_layer_blocks_unauthorized_tables (test_hito2_minimizacion_rbac.RBACTests.test_database_layer_blocks_unauthorized_tables) ... ok
-test_forged_or_revoked_tokens_are_rejected (test_hito2_minimizacion_rbac.RBACTests.test_forged_or_revoked_tokens_are_rejected) ... ok
-test_logistics_window_closes_after_delivery (test_hito2_minimizacion_rbac.RBACTests.test_logistics_window_closes_after_delivery) ... ok
-test_permission_matrix_is_enforced_by_server (test_hito2_minimizacion_rbac.RBACTests.test_permission_matrix_is_enforced_by_server) ... ok
-test_support_sees_only_masked_data (test_hito2_minimizacion_rbac.RBACTests.test_support_sees_only_masked_data) ... ok
-test_internal_errors_do_not_leak_details_and_logs_are_redacted (test_hito2_minimizacion_rbac.SecureErrorsAndLogsTests.test_internal_errors_do_not_leak_details_and_logs_are_redacted) ... ok
-test_login_lockout_and_no_user_enumeration (test_hito2_minimizacion_rbac.SecureErrorsAndLogsTests.test_login_lockout_and_no_user_enumeration) ... ok
-test_chain_detects_tampering_and_opens_incident (test_hito3_auditoria_incidentes.AuditTests.test_chain_detects_tampering_and_opens_incident) ... ok
-test_events_have_required_attributes_and_no_personal_data (test_hito3_auditoria_incidentes.AuditTests.test_events_have_required_attributes_and_no_personal_data) ... ok
-test_only_authorized_roles_read_audit_and_reads_are_audited (test_hito3_auditoria_incidentes.AuditTests.test_only_authorized_roles_read_audit_and_reads_are_audited) ... ok
-test_retention_purge_keeps_chain_verifiable (test_hito3_auditoria_incidentes.AuditTests.test_retention_purge_keeps_chain_verifiable) ... ok
-test_sanitize_drops_secrets_and_masks_values (test_hito3_auditoria_incidentes.AuditTests.test_sanitize_drops_secrets_and_masks_values) ... ok
-test_anomalous_exports_raise_alert (test_hito3_auditoria_incidentes.DetectionAndIncidentTests.test_anomalous_exports_raise_alert) ... ok
-test_disable_compromised_staff_account (test_hito3_auditoria_incidentes.DetectionAndIncidentTests.test_disable_compromised_staff_account) ... ok
-test_full_incident_lifecycle (test_hito3_auditoria_incidentes.DetectionAndIncidentTests.test_full_incident_lifecycle) ... ok
-test_notification_criteria_follow_art_14_sexies (test_hito3_auditoria_incidentes.DetectionAndIncidentTests.test_notification_criteria_follow_art_14_sexies) ... ok
-test_only_security_officer_can_contain (test_hito3_auditoria_incidentes.DetectionAndIncidentTests.test_only_security_officer_can_contain) ... ok
-test_repeated_denied_access_raises_suspicious_event (test_hito3_auditoria_incidentes.DetectionAndIncidentTests.test_repeated_denied_access_raises_suspicious_event) ... ok
-test_key_rotation_reencrypts_whole_database (test_hito3_auditoria_incidentes.RecoveryProceduresTests.test_key_rotation_reencrypts_whole_database) ... ok
-test_restored_backup_does_not_resurrect_erased_customer (test_hito3_auditoria_incidentes.RecoveryProceduresTests.test_restored_backup_does_not_resurrect_erased_customer) ... ok
-test_each_purpose_is_independent (test_hito3_consentimiento_derechos.ConsentTests.test_each_purpose_is_independent) ... ok
-test_history_is_append_only_and_tamper_evident (test_hito3_consentimiento_derechos.ConsentTests.test_history_is_append_only_and_tamper_evident) ... ok
-test_nothing_is_granted_by_default (test_hito3_consentimiento_derechos.ConsentTests.test_nothing_is_granted_by_default) ... ok
-test_outdated_text_version_is_rejected (test_hito3_consentimiento_derechos.ConsentTests.test_outdated_text_version_is_rejected) ... ok
-test_record_contains_date_purpose_version_and_state (test_hito3_consentimiento_derechos.ConsentTests.test_record_contains_date_purpose_version_and_state) ... ok
-test_revocation_is_recorded_and_propagated (test_hito3_consentimiento_derechos.ConsentTests.test_revocation_is_recorded_and_propagated) ... ok
-test_revoking_saved_payment_deletes_token (test_hito3_consentimiento_derechos.ConsentTests.test_revoking_saved_payment_deletes_token) ... ok
-test_staff_cannot_manage_customer_consent (test_hito3_consentimiento_derechos.ConsentTests.test_staff_cannot_manage_customer_consent) ... ok
-test_minor_report_disables_and_erases_account (test_hito3_consentimiento_derechos.MinorsTests.test_minor_report_disables_and_erases_account) ... ok
-test_access_portability_flow_with_identity_verification (test_hito3_consentimiento_derechos.RightsTests.test_access_portability_flow_with_identity_verification) ... ok
-test_code_attempts_are_limited (test_hito3_consentimiento_derechos.RightsTests.test_code_attempts_are_limited) ... ok
-test_deadline_and_single_extension (test_hito3_consentimiento_derechos.RightsTests.test_deadline_and_single_extension) ... ok
-test_duplicate_open_requests_are_rejected (test_hito3_consentimiento_derechos.RightsTests.test_duplicate_open_requests_are_rejected) ... ok
-test_erasure_refused_with_active_order_then_executed (test_hito3_consentimiento_derechos.RightsTests.test_erasure_refused_with_active_order_then_executed) ... ok
-test_other_user_cannot_touch_my_request (test_hito3_consentimiento_derechos.RightsTests.test_other_user_cannot_touch_my_request) ... ok
-test_rectification_validates_records_and_propagates (test_hito3_consentimiento_derechos.RightsTests.test_rectification_validates_records_and_propagates) ... ok
+test_checkout_rejects_card_data_and_free_text_with_pan (test_hito2_minimizacion_rbac.MinimizationTests.test_checkout_rejects_card_data_and_free_text_with_pan) ... 2026-11-11 19:26:05,601 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_key_rotation_reencrypts_without_losing_data (test_hito2_minimizacion_rbac.MinimizationTests.test_key_rotation_reencrypts_without_losing_data) ... 2026-11-11 19:26:06,308 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_personal_data_is_never_stored_in_plaintext (test_hito2_minimizacion_rbac.MinimizationTests.test_personal_data_is_never_stored_in_plaintext) ... 2026-11-11 19:26:06,973 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_phone_is_optional_and_minor_accounts_are_rejected (test_hito2_minimizacion_rbac.MinimizationTests.test_phone_is_optional_and_minor_accounts_are_rejected) ... 2026-11-11 19:26:07,659 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_registration_rejects_fields_removed_by_redesign (test_hito2_minimizacion_rbac.MinimizationTests.test_registration_rejects_fields_removed_by_redesign) ... 2026-11-11 19:26:08,284 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_rut_only_collected_for_invoices (test_hito2_minimizacion_rbac.MinimizationTests.test_rut_only_collected_for_invoices) ... 2026-11-11 19:26:08,865 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_analytics_and_marketing_use_pseudonyms (test_hito2_minimizacion_rbac.PseudonymizationTests.test_analytics_and_marketing_use_pseudonyms) ... 2026-11-11 19:26:09,623 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_dev_dataset_contains_no_identifiers (test_hito2_minimizacion_rbac.PseudonymizationTests.test_dev_dataset_contains_no_identifiers) ... 2026-11-11 19:26:10,518 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_sales_report_is_k_anonymous (test_hito2_minimizacion_rbac.PseudonymizationTests.test_sales_report_is_k_anonymous) ... 2026-11-11 19:26:11,322 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_admin_cannot_escalate_privileges (test_hito2_minimizacion_rbac.RBACTests.test_admin_cannot_escalate_privileges) ... 2026-11-11 19:26:12,908 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_audit_table_is_immutable_even_for_system_connection (test_hito2_minimizacion_rbac.RBACTests.test_audit_table_is_immutable_even_for_system_connection) ... 2026-11-11 19:26:14,070 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_database_layer_blocks_unauthorized_tables (test_hito2_minimizacion_rbac.RBACTests.test_database_layer_blocks_unauthorized_tables) ... 2026-11-11 19:26:15,244 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_forged_or_revoked_tokens_are_rejected (test_hito2_minimizacion_rbac.RBACTests.test_forged_or_revoked_tokens_are_rejected) ... 2026-11-11 19:26:16,474 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_logistics_window_closes_after_delivery (test_hito2_minimizacion_rbac.RBACTests.test_logistics_window_closes_after_delivery) ... 2026-11-11 19:26:17,694 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_permission_matrix_is_enforced_by_server (test_hito2_minimizacion_rbac.RBACTests.test_permission_matrix_is_enforced_by_server) ... 2026-11-11 19:26:18,853 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_support_sees_only_masked_data (test_hito2_minimizacion_rbac.RBACTests.test_support_sees_only_masked_data) ... 2026-11-11 19:26:20,655 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_internal_errors_do_not_leak_details_and_logs_are_redacted (test_hito2_minimizacion_rbac.SecureErrorsAndLogsTests.test_internal_errors_do_not_leak_details_and_logs_are_redacted) ... 2026-11-11 19:26:21,789 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_login_lockout_and_no_user_enumeration (test_hito2_minimizacion_rbac.SecureErrorsAndLogsTests.test_login_lockout_and_no_user_enumeration) ... 2026-11-11 19:26:22,516 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_audit_query_does_not_log_filter_values (test_hito3_auditoria_incidentes.AuditTests.test_audit_query_does_not_log_filter_values) ... 2026-11-11 19:26:23,661 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_authenticated_api_reads_are_audited_without_content (test_hito3_auditoria_incidentes.AuditTests.test_authenticated_api_reads_are_audited_without_content) ... 2026-11-11 19:26:24,376 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_chain_detects_tampering_and_opens_incident (test_hito3_auditoria_incidentes.AuditTests.test_chain_detects_tampering_and_opens_incident) ... 2026-11-11 19:26:25,188 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_events_have_required_attributes_and_no_personal_data (test_hito3_auditoria_incidentes.AuditTests.test_events_have_required_attributes_and_no_personal_data) ... 2026-11-11 19:26:25,945 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_only_authorized_roles_read_audit_and_reads_are_audited (test_hito3_auditoria_incidentes.AuditTests.test_only_authorized_roles_read_audit_and_reads_are_audited) ... 2026-11-11 19:26:26,760 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_retention_purge_keeps_chain_verifiable (test_hito3_auditoria_incidentes.AuditTests.test_retention_purge_keeps_chain_verifiable) ... 2026-11-11 19:26:27,721 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_sanitize_drops_secrets_and_masks_values (test_hito3_auditoria_incidentes.AuditTests.test_sanitize_drops_secrets_and_masks_values) ... 2026-11-11 19:26:28,431 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_anomalous_exports_raise_alert (test_hito3_auditoria_incidentes.DetectionAndIncidentTests.test_anomalous_exports_raise_alert) ... 2026-11-11 19:26:29,019 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_disable_compromised_staff_account (test_hito3_auditoria_incidentes.DetectionAndIncidentTests.test_disable_compromised_staff_account) ... 2026-11-11 19:26:30,095 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_full_incident_lifecycle (test_hito3_auditoria_incidentes.DetectionAndIncidentTests.test_full_incident_lifecycle) ... 2026-11-11 19:26:31,004 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_notification_criteria_follow_art_14_sexies (test_hito3_auditoria_incidentes.DetectionAndIncidentTests.test_notification_criteria_follow_art_14_sexies) ... 2026-11-11 19:26:32,215 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_only_security_officer_can_contain (test_hito3_auditoria_incidentes.DetectionAndIncidentTests.test_only_security_officer_can_contain) ... 2026-11-11 19:26:32,971 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_repeated_denied_access_raises_suspicious_event (test_hito3_auditoria_incidentes.DetectionAndIncidentTests.test_repeated_denied_access_raises_suspicious_event) ... 2026-11-11 19:26:33,950 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_key_rotation_reencrypts_whole_database (test_hito3_auditoria_incidentes.RecoveryProceduresTests.test_key_rotation_reencrypts_whole_database) ... 2026-11-11 19:26:34,766 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_restored_backup_does_not_resurrect_erased_customer (test_hito3_auditoria_incidentes.RecoveryProceduresTests.test_restored_backup_does_not_resurrect_erased_customer) ... 2026-11-11 19:26:35,604 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_each_purpose_is_independent (test_hito3_consentimiento_derechos.ConsentTests.test_each_purpose_is_independent) ... 2026-11-11 19:26:36,472 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_history_is_append_only_and_tamper_evident (test_hito3_consentimiento_derechos.ConsentTests.test_history_is_append_only_and_tamper_evident) ... 2026-11-11 19:26:37,230 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_nothing_is_granted_by_default (test_hito3_consentimiento_derechos.ConsentTests.test_nothing_is_granted_by_default) ... 2026-11-11 19:26:37,969 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_outdated_text_version_is_rejected (test_hito3_consentimiento_derechos.ConsentTests.test_outdated_text_version_is_rejected) ... 2026-11-11 19:26:38,713 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_record_contains_date_purpose_version_and_state (test_hito3_consentimiento_derechos.ConsentTests.test_record_contains_date_purpose_version_and_state) ... 2026-11-11 19:26:39,410 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_revocation_is_recorded_and_propagated (test_hito3_consentimiento_derechos.ConsentTests.test_revocation_is_recorded_and_propagated) ... 2026-11-11 19:26:40,127 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_revoking_saved_payment_deletes_token (test_hito3_consentimiento_derechos.ConsentTests.test_revoking_saved_payment_deletes_token) ... 2026-11-11 19:26:40,965 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_staff_cannot_manage_customer_consent (test_hito3_consentimiento_derechos.ConsentTests.test_staff_cannot_manage_customer_consent) ... 2026-11-11 19:26:41,769 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_minor_report_disables_and_erases_account (test_hito3_consentimiento_derechos.MinorsTests.test_minor_report_disables_and_erases_account) ... 2026-11-11 19:26:42,528 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_access_portability_flow_with_identity_verification (test_hito3_consentimiento_derechos.RightsTests.test_access_portability_flow_with_identity_verification) ... 2026-11-11 19:26:43,332 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_code_attempts_are_limited (test_hito3_consentimiento_derechos.RightsTests.test_code_attempts_are_limited) ... 2026-11-11 19:26:44,388 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_deadline_and_single_extension (test_hito3_consentimiento_derechos.RightsTests.test_deadline_and_single_extension) ... 2026-11-11 19:26:45,506 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_duplicate_open_requests_are_rejected (test_hito3_consentimiento_derechos.RightsTests.test_duplicate_open_requests_are_rejected) ... 2026-11-11 19:26:46,490 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_erasure_refused_with_active_order_then_executed (test_hito3_consentimiento_derechos.RightsTests.test_erasure_refused_with_active_order_then_executed) ... 2026-11-11 19:26:47,330 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_opposition_requires_verification_and_stops_marketing (test_hito3_consentimiento_derechos.RightsTests.test_opposition_requires_verification_and_stops_marketing) ... 2026-11-11 19:26:48,655 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_other_user_cannot_touch_my_request (test_hito3_consentimiento_derechos.RightsTests.test_other_user_cannot_touch_my_request) ... 2026-11-11 19:26:49,705 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_rectification_rejection_does_not_apply_other_changes (test_hito3_consentimiento_derechos.RightsTests.test_rectification_rejection_does_not_apply_other_changes) ... 2026-11-11 19:26:50,642 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
+test_rectification_validates_records_and_propagates (test_hito3_consentimiento_derechos.RightsTests.test_rectification_validates_records_and_propagates) ... 2026-11-11 19:26:51,542 INFO nortishop Aplicaci�n iniciada (llaves: Keyring(versions=['v1'], active='v1'))
+ok
 
 ----------------------------------------------------------------------
-Ran 47 tests in 7.767s
+Ran 51 tests in 46.929s
 
 OK
