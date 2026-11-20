@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="5">
+<title>Buzón de prueba · NortiShop</title>
+<style>
+  body { font-family: Calibri, Arial, sans-serif; margin: 0; background: #f6f8fa; color: #1f2933; }
+  header { background: #7a4b00; color: #fff; padding: 16px 24px; }
+  header h1 { margin: 0; font-size: 20px; }
+  header p { margin: 4px 0 0; font-size: 13px; opacity: .9; }
+  main { max-width: 760px; margin: 0 auto; padding: 20px 16px; }
+  .mail { background: #fff; border: 1px solid #d5dde5; border-radius: 6px; padding: 14px 18px; margin-bottom: 12px; }
+  .meta { font-size: 13px; color: #5b6b7a; }
+  .code { font-size: 32px; letter-spacing: 6px; font-weight: bold; color: #17324d; margin: 6px 0; }
+  .empty { color: #5b6b7a; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Buzón de prueba (simulación del proveedor de correo)</h1>
+  <p>Solo existe en modo demostración local. Se actualiza cada 5 segundos. Datos sintéticos.</p>
+</header>
+<main>
+{% for m in mensajes %}
+  <div class="mail">
+    <div class="meta">Para: {{ m.para }} · Solicitud {{ m.solicitud }}</div>
+    <div><strong>{{ m.asunto }}</strong></div>
+    <div class="code">{{ m.codigo }}</div>
+    <div class="meta">Válido por 10 minutos. Si no hiciste esta solicitud, ignora este mensaje.</div>
+  </div>
+{% else %}
+  <p class="empty">Aún no hay mensajes.</p>
+{% endfor %}
+</main>
+</body>
+</html>

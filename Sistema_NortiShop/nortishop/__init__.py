@@ -37,7 +37,7 @@ class Services:
 
 
 def create_app(*, db_path: str, keyring: Keyring | None = None, evidence_dir: str | Path | None = None,
-               scrypt_n: int | None = None, testing: bool = False) -> Flask:
+               scrypt_n: int | None = None, testing: bool = False, demo_mailbox: bool = False) -> Flask:
     app = Flask(__name__)
     app.config.update(TESTING=testing, JSON_AS_ASCII=False, MAX_CONTENT_LENGTH=64 * 1024)
     app.json.ensure_ascii = False
@@ -60,5 +60,25 @@ def create_app(*, db_path: str, keyring: Keyring | None = None, evidence_dir: st
                                                                                 ref, result, details))
 
     app.extensions["rights_factory"] = rights_service
+    if demo_mailbox:
+        _register_demo_mailbox(app, services)
     logging.getLogger("nortishop").info("Aplicación iniciada (llaves: %r)", keyring)
     return app
+
+
+def _register_demo_mailbox(app: Flask, services: Services) -> None:
+    """Buzón de correo simulado para demostraciones locales (desactivado por defecto).
+
+    Reemplaza al proveedor de correo transaccional: muestra los mensajes que el
+    sistema "envió" (códigos de verificación de solicitudes de derechos) solo
+    mientras el proceso está vivo. Nunca se persiste ni se habilita en producción.
+    """
+    from flask import jsonify, render_template  # noqa: PLC0415
+
+    @app.get("/demo/buzon")
+    def demo_mailbox_page():
+        return render_template("buzon.html", mensajes=list(reversed(services.mail[-20:])))
+
+    @app.get("/demo/buzon.json")
+    def demo_mailbox_json():
+        return jsonify(mensajes=list(reversed(services.mail[-20:])))

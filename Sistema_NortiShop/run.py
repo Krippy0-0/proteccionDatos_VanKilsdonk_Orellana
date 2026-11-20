@@ -20,6 +20,9 @@ if __name__ == "__main__":
     load_dotenv()
     db = os.environ.get("NORTISHOP_DB", "instance/nortishop.db")
     Path(db).parent.mkdir(parents=True, exist_ok=True)
-    app = create_app(db_path=db)
+    demo = os.environ.get("NORTISHOP_DEMO_MAILBOX") == "1"
+    app = create_app(db_path=db, demo_mailbox=demo)
+    if demo:
+        print("Modo demostración: buzón simulado en http://127.0.0.1:5000/demo/buzon")
     # Un hilo: la conexión de sistema de SQLite se comparte entre solicitudes.
     app.run(host="127.0.0.1", port=5000, debug=False, threaded=False)
